@@ -31,19 +31,18 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        int i,j;
-        for(i=0;i<nums.size()-1;i++)
-        {
-            for(j=i+1;j<nums.size();j++)
-            {
-                if(nums[i]+nums[j]==target)
-                {
-                   return {i,j};
-                }
+        unordered_map<int,int> record;
+        for(int i = 0 ; i < nums.size() ; i ++){
+       
+            int complement = target - nums[i];
+            if(record.find(complement) != record.end()){
+                int res[] = {i, record[complement]};
+                return vector<int>(res, res + 2);
             }
+
+            record[nums[i]] = i;
         }
-        return {i,j};
-    };
+    }
 };
 // @lc code=end
 
