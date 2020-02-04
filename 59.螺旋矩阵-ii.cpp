@@ -31,27 +31,34 @@
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>> ans;
-        vector<int> tmp;
-        int x, y, dir;
-        int dx[4] = {0, 1, 0, -1};
-        int dy[4] = {1, 0, -1, 0};
-        for(x = 0; x < n; x ++)
-            tmp.push_back(0);
-        for(x = 0; x < n; x ++)
-            ans.push_back(tmp);
-        x = 0, y = 0, dir = 0;
-        ans[0][0] = 1;
-        for(int i = 2; i <= n * n; i ++)
-        {
-            if(x + dx[dir] < 0 || x + dx[dir] >= n || y + dy[dir] < 0 || y + dy[dir] >= n )
-                dir = (dir + 1) % 4;
-            else if(ans[x + dx[dir]][y + dy[dir]] > 0)
-                dir = (dir + 1) % 4;
-            x += dx[dir], y += dy[dir];
-            ans[x][y] = i;
+        // 创建二维矩阵
+        // vector<vector<int>> matrix(n);
+        // for (int i = 0; i < matrix.size(); i++)
+        //     matrix[i].resize(n);
+
+        vector<vector<int>> matrix(n,vector<int>(n));
+        // 上下左右
+        int u = 0;
+        int d = n-1;
+        int l = 0;
+        int r = n-1;
+        int num = 1;
+
+        while(num <= n*n){
+            // 上
+            for(int i=l; i <= r; i++) matrix[u][i] = num++;
+            if (u++ >= d) break;
+            // 右
+            for(int i=u; i <= d; i++) matrix[i][r] = num++;
+            if (r-- <= l) break;
+            // 下
+            for(int i=r; i >= l; i--) matrix[d][i] = num++;
+            if (d-- <= u) break;
+            // 左
+            for(int i=d; i >= u; i--) matrix[i][l] = num++;
+            if (l++ >= r) break;
         }
-        return ans;
+        return matrix;
     }
 };
 // @lc code=end
