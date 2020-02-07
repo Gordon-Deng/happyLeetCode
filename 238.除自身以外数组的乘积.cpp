@@ -29,6 +29,7 @@
  */
 
 // @lc code=start
+// O(n) O(n)
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
