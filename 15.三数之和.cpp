@@ -39,7 +39,7 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> res;
         if(nums.size() < 3) return res;
-        sort(nums.begin(),nums.end());　//先排序
+        sort(nums.begin(),nums.end());
         for(vector<int>::iterator it = nums.begin(); it != nums.end()-2;){
             int tmp = *it;
             if(tmp > 0) break;
@@ -47,15 +47,15 @@ public:
             vector<int>::iterator left = it+1;
             vector<int>::iterator right = nums.end()-1;
             while(left < right){
-                if(*right < 0) break;　　//如果右边小于0，break
+                if(*right < 0) break;//如果右边小于0，break
                 if(*left + *right < target){
                     int v= *left;
-                    while(left != right && *left == v) left++; //跳过相等的元素
+                    while(left != right && *left == v) left++;//跳过相等的元素
                 }else if(*left + *right > target){
                     int v= *right;
                     while(left != right && *right == v) right --;//跳过相等的元素
                 }else{
-                    vector<int> tmp_res{tmp,*left,*right};　//保存结果
+                    vector<int> tmp_res{tmp,*left,*right};//保存结果
                     res.push_back(tmp_res);
                     int v= *left;
                     while(left != right &&  *left == v) left++;//跳过相等的元素
