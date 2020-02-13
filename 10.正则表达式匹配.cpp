@@ -89,7 +89,7 @@ class Solution {
         if(si<s.size() && (s[si]==p[pi]||p[pi]=='.')) cur_match=true;
 
         if(pi+1<p.size() && p[pi+1]=='*'){  //下一个字符可能是'*'
-            //当前字符可能出现0次， 或者    多次
+            //当前字符可能出现0次， 或者多次
             return dp[si][pi]=(isMatch(s,p,si,pi+2) || cur_match==true&&isMatch(s,p,si+1,pi));
         }
         return dp[si][pi]=(cur_match && isMatch(s,p,si+1,pi+1));
