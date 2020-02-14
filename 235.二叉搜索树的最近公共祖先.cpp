@@ -63,15 +63,17 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (!root) return root;
-        
-        if (root->val > p->val && root->val > q->val) {
-            return lowestCommonAncestor(root->left, p, q);
-        } else if (root->val < p->val && root->val < q->val) {
-            return lowestCommonAncestor(root->right, p, q);
-        } else {
-            return root;  // 当前点为最近公共祖先
+        while (root) {
+            if (root->val > p->val && root->val > q->val) {
+                root = root->left;
+            } else if (root->val < p->val && root->val < q->val) {
+                root = root->right;
+            } else {
+                return root;
+            }
         }
+        
+        return root;
     }
 };
 // @lc code=end
