@@ -47,11 +47,39 @@
  */
 
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    vector<int> grayCode(int n) {
-        
+    vector<int> grayCode(int n)
+    {
+        int total = 1;
+        for (int i = 0; i < n; i++)
+            total *= 2;
+        vector<int> ans(total, 0);
+        trackback(ans, n - 1, 0, total - 1);
+        return ans;
+    }
+    void trackback(vector<int> &ans, int n, int left, int right)
+    {
+        if (n < 0)
+            return;
+        int m1 = (1 << n);
+        int mid = (left + right) / 2;
+        for (int i = mid + 1; i <= right; i++)
+            ans[i] = (ans[i] | m1);
+        trackback(ans, n - 1, left, mid);              //对前一半进行迭代，因为前一半的第n-1位应该是先0后1;
+        trackback_reverse(ans, n - 1, mid + 1, right); //对后一半进行迭代，第n-1位是先1后0；
+    }
+    void trackback_reverse(vector<int> &ans, int n, int left, int right)
+    {
+        if (n < 0)
+            return;
+        int m1 = (1 << n);
+        int mid = (left + right) / 2;
+        for (int i = left; i <= mid; i++)
+            ans[i] = (ans[i] | m1);
+        trackback(ans, n - 1, left, mid);              //对前一半进行迭代，因为前一半的第n-1位应该是先0后1;
+        trackback_reverse(ans, n - 1, mid + 1, right); //对后一半进行迭代，第n-1位是先1后0；
     }
 };
 // @lc code=end
-
