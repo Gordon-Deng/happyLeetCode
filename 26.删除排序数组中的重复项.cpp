@@ -55,6 +55,8 @@
  */
 
 // @lc code=start
+
+// T:O(n) S:O()
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
