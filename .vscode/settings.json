@@ -16,5 +16,11 @@
         "unordered_set": "cpp",
         "utility": "cpp",
         "vector": "cpp"
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     }
 }

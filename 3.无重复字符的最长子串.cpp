@@ -40,20 +40,23 @@
  */
 
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(string s)
+    {
         int counter = 0, tmp = 0;
         auto left = s.begin();
         for (int j = 0; j < s.length(); ++j)
         {
-            auto iter = find(left, s.begin()+j+1, s[j]);
-            if (iter == s.begin()+j) ++tmp;
+            auto iter = find(left, s.begin() + j + 1, s[j]);
+            if (iter == s.begin() + j)
+                ++tmp;
             else
             {
                 counter = max(counter, tmp);
                 left = iter + 1;
-                tmp = s.begin()+j - left + 1;
+                tmp = s.begin() + j - left + 1;
             }
         }
         counter = max(counter, tmp);
@@ -61,4 +64,3 @@ public:
     }
 };
 // @lc code=end
-

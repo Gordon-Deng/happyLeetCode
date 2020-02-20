@@ -1,16 +1,16 @@
 /*
- * @lc app=leetcode.cn id=1 lang=cpp
+ * @lc app=leetcode.cn id=1 lang=java
  *
  * [1] 两数之和
  *
  * https://leetcode-cn.com/problems/two-sum/description/
  *
  * algorithms
- * Easy (47.05%)
- * Likes:    7057
+ * Easy (47.30%)
+ * Likes:    7403
  * Dislikes: 0
- * Total Accepted:    707.9K
- * Total Submissions: 1.5M
+ * Total Accepted:    773.4K
+ * Total Submissions: 1.6M
  * Testcase Example:  '[2,7,11,15]\n9'
  *
  * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
@@ -28,28 +28,18 @@
  */
 
 // @lc code=start
-
-// T:O(n) S:O(n)
-class Solution
-{
-public:
-    vector<int> twoSum(vector<int> &nums, int target)
-    {
-        unordered_map<int, int> record;
-        vector<int> res;
-        for (int i = 0; i < nums.size(); i++)
-        {
-            int tmp = target - nums[i];
-            if (record.find(tmp) != record.end())
-            {
-                res.push_back(i);
-                res.push_back(record[tmp]);
-                break;
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
             }
-            else
-                record[nums[i]] = i;
+            map.put(nums[i], i);
         }
-        return res;
+        throw new IllegalArgumentException("No two sum solution");
     }
-};
+}
 // @lc code=end
+
