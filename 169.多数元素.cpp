@@ -52,7 +52,6 @@ public:
             else
                 --count;
         }
-
         return candidate;
     }
 };

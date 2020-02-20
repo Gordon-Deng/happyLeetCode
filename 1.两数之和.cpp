@@ -28,20 +28,23 @@
  */
 
 // @lc code=start
+
+// T:O(n) S:O(n)
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int,int> record;
-        for(int i = 0 ; i < nums.size() ; i ++){
-       
-            int complement = target - nums[i];
-            if(record.find(complement) != record.end()){
-                int res[] = {i, record[complement]};
-                return vector<int>(res, res + 2);
-            }
-
-            record[nums[i]] = i;
+        vector<int> res;
+        for(int i=0;i<nums.size();i++){
+            int tmp=target-nums[i];
+            if(record.find(tmp)!=record.end()){
+                res.push_back(i);
+                res.push_back(record[tmp]);
+                break;
+            }else
+                record[nums[i]]=i;
         }
+        return res;
     }
 };
 // @lc code=end
