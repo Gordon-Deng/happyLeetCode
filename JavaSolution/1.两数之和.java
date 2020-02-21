@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /*
  * @lc app=leetcode.cn id=1 lang=java
  *
@@ -28,9 +30,10 @@
  */
 
 // @lc code=start
+// @lc code=start
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
             if (map.containsKey(complement)) {
@@ -41,5 +44,18 @@ class Solution {
         throw new IllegalArgumentException("No two sum solution");
     }
 }
-// @lc code=end
 
+class Main {
+    public static void main(String[] args) {
+        // Create a new Solution instance
+        Solution solution = new Solution();
+        // Create a test case
+        int [] nums = new int[]{2,7,11,15};
+        int target = 9;
+        // Get the answer
+        int[] answer = solution.twoSum(nums, target);
+        // Print the answer
+        System.out.println(answer);
+    }
+}
+// @lc code=end
