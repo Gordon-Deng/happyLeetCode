@@ -45,17 +45,17 @@ class Solution {
     }
 }
 
-class Main {
-    public static void main(String[] args) {
-        // Create a new Solution instance
-        Solution solution = new Solution();
-        // Create a test case
-        int [] nums = new int[]{2,7,11,15};
-        int target = 9;
-        // Get the answer
-        int[] answer = solution.twoSum(nums, target);
-        // Print the answer
-        System.out.println(answer);
-    }
-}
+// class Main {
+//     public static void main(String[] args) {
+//         // Create a new Solution instance
+//         Solution solution = new Solution();
+//         // Create a test case
+//         int [] nums = new int[]{2,7,11,15};
+//         int target = 9;
+//         // Get the answer
+//         int[] answer = solution.twoSum(nums, target);
+//         // Print the answer
+//         System.out.println(answer);
+//     }
+// }
 // @lc code=end
