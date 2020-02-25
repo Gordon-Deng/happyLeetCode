@@ -43,17 +43,34 @@
 
 // T:O(n) S:O(min(m,n))用hashmap/O(m)用table
 // 滑动窗口 https://zhuanlan.zhihu.com/p/61564531
+// 我们可以定义字符到索引的映射，而不是使用集合来判断一个字符是否存在。 当我们找到重复的字符时，我们可以立即跳过该窗口。
+// 也就是说，如果 s[j]s[j] 在 [i, j)[i,j) 范围内有与 j'重复的字符，我们不需要逐渐增加 i 。 我们可以直接跳过 [i，j']范围内的所有元素，并将 i变为 j' + 1
 class Solution {
     public int lengthOfLongestSubstring(String s) {
+        // hashmap法
         int n = s.length(), ans = 0;
-        int[] index = new int[128]; // current index of character
+        Map<Character, Integer> map = new HashMap<>(); // current index of character
         // try to extend the range [i, j]
         for (int j = 0, i = 0; j < n; j++) {
-            i = Math.max(index[s.charAt(j)], i);
+            if (map.containsKey(s.charAt(j))) {
+                // abca和abcb，j'出现的位置可能比当前i大
+                i = Math.max(map.get(s.charAt(j)), i);
+            }
             ans = Math.max(ans, j - i + 1);
-            index[s.charAt(j)] = j + 1;
+            map.put(s.charAt(j), j + 1);
         }
         return ans;
+        
+        // table法
+        // int n = s.length(), ans = 0;
+        // int[] index = new int[128]; // current index of character
+        // // try to extend the range [i, j]
+        // for (int j = 0, i = 0; j < n; j++) {
+        //     i = Math.max(index[s.charAt(j)], i);
+        //     ans = Math.max(ans, j - i + 1);
+        //     index[s.charAt(j)] = j + 1;
+        // }
+        // return ans;
     }
 }
 // @lc code=end
