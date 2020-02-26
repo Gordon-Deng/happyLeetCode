@@ -47,7 +47,7 @@
 // 也就是说，如果 s[j]s[j] 在 [i, j)[i,j) 范围内有与 j'重复的字符，我们不需要逐渐增加 i 。 我们可以直接跳过 [i，j']范围内的所有元素，并将 i变为 j' + 1
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        // hashmap法
+        // hashmap法 
         int n = s.length(), ans = 0;
         Map<Character, Integer> map = new HashMap<>(); // current index of character
         // try to extend the range [i, j]
