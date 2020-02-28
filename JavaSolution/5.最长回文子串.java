@@ -33,7 +33,7 @@
 // @lc code=start
 class Solution {
     public String longestPalindrome(String s) {
-        
+
     }
 }
 // @lc code=end
