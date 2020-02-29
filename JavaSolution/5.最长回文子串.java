@@ -56,6 +56,7 @@ class Solution {
             L--;
             R++;
         }
+        // 重点在这个减一
         return R - L - 1;
     }
 }
