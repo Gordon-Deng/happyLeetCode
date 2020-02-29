@@ -42,6 +42,7 @@ class Solution {
             int len1 = expandAroundCenter(s, i, i);
             int len2 = expandAroundCenter(s, i, i + 1);
             int len = Math.max(len1, len2);
+            // 主要是为了应付偶数长度的
             if (len > end - start) {
                 start = i - (len - 1) / 2;
                 end = i + len / 2;
