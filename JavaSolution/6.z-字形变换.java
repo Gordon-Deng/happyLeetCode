@@ -60,6 +60,7 @@ class Solution {
         for(char c : s.toCharArray()) {
             rows.get(i).append(c);
             if(i == 0 || i == numRows -1) flag = - flag;
+            // ！！！！：这个flag用的好
             i += flag;
         }
         StringBuilder res = new StringBuilder();
