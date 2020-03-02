@@ -42,6 +42,9 @@
  */
 
 // @lc code=start
+
+// T:O(n) S:O(n)
+// 取出后半段数字进行翻转
 class Solution {
     public boolean isPalindrome(int x) {
         //思考：这里大家可以思考一下，为什么末尾为 0 就可以直接返回 false
