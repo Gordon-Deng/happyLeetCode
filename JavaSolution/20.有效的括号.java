@@ -56,6 +56,8 @@
  */
 
 // @lc code=start
+
+// T:O(n) S:O(n)
 class Solution {
 
     // Hash table that takes care of the mappings.
