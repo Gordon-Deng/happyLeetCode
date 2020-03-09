@@ -29,6 +29,7 @@ import java.util.Arrays;
 
 // T:O(n^2) S:O(1)
 // 先排序，固定首位，次位和尾位双指针夹
+// 测靠近用绝对值判定
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
@@ -38,7 +39,7 @@ class Solution {
             int right = nums.length - 1;
             while (left != right) {
                 int sum = nums[i] + nums[left] + nums[right];
-                if (Math.abs(sum - target) < Math.abs(result - target))
+                if (Math. abs(sum - target) < Math.abs(result - target))
                     result = sum;
                 if (sum > target) {
                     right--;
