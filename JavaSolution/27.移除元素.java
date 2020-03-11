@@ -67,19 +67,21 @@
 
 // T:O(n) S:O(1)
 // 在26移除重复项的基础上看，比较的两项不再是快慢指针，而是一个指针和最末一项
-public int removeElement(int[] nums, int val) {
-    int i = 0;
-    int n = nums.length;
-    while (i < n) {
-        if (nums[i] == val) {
-            nums[i] = nums[n - 1];
-            // reduce array size by one
-            n--;
-        } else {
-            i++;
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int i = 0;
+        int n = nums.length;
+        while (i < n) {
+            if (nums[i] == val) {
+                nums[i] = nums[n - 1];
+                // reduce array size by one
+                n--;
+            } else {
+                i++;
+            }
         }
+        return n;
     }
-    return n;
 }
 // @lc code=end
 
