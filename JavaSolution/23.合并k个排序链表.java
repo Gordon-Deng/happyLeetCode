@@ -37,7 +37,7 @@
  * }
  */
 
- // T:O(N*log(k)) S:O()
+ // T:O(N*log(k)) S:O(1)
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         int len = lists.length;
