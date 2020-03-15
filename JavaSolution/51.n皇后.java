@@ -47,6 +47,7 @@
 // T:O(n!) S:O(n)
 // 回溯法
 // 对于所有的主对角线有 行号 - 列号 = 常数，对于所有的次对角线有 行号 + 列号 = 常数
+// 主对角线：行号-列号=0，此对角线行号+列号=n-1
 class Solution {
     private List<List<String>> output = new ArrayList<>();
 
