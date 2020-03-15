@@ -65,7 +65,9 @@ class Solution {
     public List<List<String>> solveNQueens(int n) {
         // 初始化
         rows = new int[n];
+        // 一共有多少条主对角线，\这样切
         mains = new int[2 * n - 1];
+        // 一共有多少条次对角线，/这样切
         secondary = new int[2 * n - 1];
         queens = new int[n];
         this.n = n;
