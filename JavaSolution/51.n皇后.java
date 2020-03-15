@@ -105,6 +105,7 @@ class Solution {
         // 1. 当前位置的这一列方向没有皇后攻击
         // 2. 当前位置的主对角线方向没有皇后攻击
         // 3. 当前位置的次对角线方向没有皇后攻击
+        // mains[row - col + n - 1]是因为数组下表 = row - col不能出现负数，secondary[row + col]下标 = row + col
         int res = rows[col] + mains[row - col + n - 1] + secondary[row + col];
         // 如果三个方向都没有攻击的话，则 res = 0，即当前位置不被任何的皇后攻击
         return res == 0;
