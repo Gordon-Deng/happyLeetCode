@@ -42,7 +42,7 @@
  * next; ListNode(int x) { val = x; } }
  */
 
-// T:O(N) S:O(N)
+// T:O(N) S:O(1)
 // 环-砍-找头，n - k % n - 1
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
