@@ -46,7 +46,7 @@
 // @lc code=start
 
 // T:O(M*N) S:O(N)
-// dp
+// dp，https://leetcode-cn.com/problems/unique-paths/solution/java-jian-dan-ming-liao-de-dong-tai-gui-hua-qiu-ji/
 class Solution {
     public int uniquePaths(int m, int n) {
         int[] cur = new int[n];
