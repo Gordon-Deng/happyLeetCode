@@ -1,3 +1,5 @@
+import java.util.List;
+
 /*
  * @lc app=leetcode.cn id=89 lang=java
  *
@@ -48,14 +50,12 @@
 
 // @lc code=start
 
-// T:O(N*M) S:O()
+// T:O(2^N) S:O(1)
 class Solution {
     public List<Integer> grayCode(int n) {
         List<Integer> res = new ArrayList<Integer>() {
-            {
-                add(0);
-            }
         };
+        res.add(0);
         int head = 1;
         for (int i = 0; i < n; i++) {
             for (int j = res.size() - 1; j >= 0; j--)
@@ -64,5 +64,19 @@ class Solution {
         }
         return res;
     }
+
+    // 动规
+    // public List<Integer> grayCode(int n) {
+    //     List<Integer> gray = new ArrayList<Integer>();
+    //     gray.add(0); //初始化 n = 0 的解
+    //     for (int i = 0; i < n; i++) {
+    //         int add = 1 << i; //要加的数
+    //         //倒序遍历，并且加上一个值添加到结果中
+    //         for (int j = gray.size() - 1; j >= 0; j--) {
+    //             gray.add(gray.get(j) + add);
+    //         }
+    //     }
+    //     return gray;
+    // }
 }
 // @lc code=end
