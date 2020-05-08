@@ -42,15 +42,39 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+ // T:O(N) S:O(N)
 class Solution {
     public int maxDepth(TreeNode root) {
-        if(root == null){
-            return 0;
+        LinkedList<Pair<TreeNode, Integer>> stack = new LinkedList<>();
+        if (root != null) {
+            stack.add(new Pair(root, 1));
         }
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
-        return 1+Math.max(left,right);
+
+        int depth = 0;
+        while (!stack.isEmpty()) {
+            Pair<TreeNode, Integer> current = stack.pollLast();
+            root = current.getKey();
+            int current_depth = current.getValue();
+            if (root != null) {
+                depth = Math.max(depth, current_depth);
+                stack.add(new Pair(root.left, current_depth + 1));
+                stack.add(new Pair(root.right, current_depth + 1));
+            }
+        }
+        return depth;
     }
+
+    // 人脸迷惑行为：递归比DFS快
+
+    // public int maxDepth(TreeNode root) {
+    // if (root == null) {
+    // return 0;
+    // } else {
+    // int left_height = maxDepth(root.left);
+    // int right_height = maxDepth(root.right);
+    // return java.lang.Math.max(left_height, right_height) + 1;
+    // }
+    // }
 }
 // @lc code=end
-
