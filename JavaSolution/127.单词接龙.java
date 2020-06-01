@@ -59,7 +59,7 @@
 
 // @lc code=start
 
-// https://leetcode-cn.com/problems/word-ladder/solution/suan-fa-shi-xian-he-you-hua-javashuang-xiang-bfs23/
+// https://leetcode-cn.com/problems/word-ladder/solution/javacong-bao-li-dao-shuang-xiang-dui-lie-zhu-bu-yo/
 // T:O(mn) S:O(mn)
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
