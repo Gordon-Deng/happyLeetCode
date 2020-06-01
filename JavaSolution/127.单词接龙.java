@@ -62,6 +62,7 @@
 // https://leetcode-cn.com/problems/word-ladder/solution/javacong-bao-li-dao-shuang-xiang-dui-lie-zhu-bu-yo/
 // T:O(mn) S:O(mn)
 // 标记位的判断能用数组就用数组
+// 优化双向BFS的设计真是鬼才，你想想，一个队列中还有两个节点，一个只有一个节点，为什么要先遍历少的那个呢，因为你多的那个队列你第一次遍历的时候，他不是最短路径，这不是相当于白费功夫了一次么，而少的那次一般只有最优解，多划算。
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         int end = wordList.indexOf(endWord);
