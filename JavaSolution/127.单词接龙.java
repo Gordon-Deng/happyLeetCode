@@ -61,6 +61,7 @@
 
 // https://leetcode-cn.com/problems/word-ladder/solution/javacong-bao-li-dao-shuang-xiang-dui-lie-zhu-bu-yo/
 // T:O(mn) S:O(mn)
+// 标记位的判断能用数组就用数组
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         int end = wordList.indexOf(endWord);
