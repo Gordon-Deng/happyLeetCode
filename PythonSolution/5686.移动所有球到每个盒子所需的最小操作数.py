@@ -61,6 +61,8 @@
 
 # 动态规划：
 # 下一个盒子所需要的操作数，可以根据前一个盒子的操作数得到
+
+# T:O(n) S:O(n)
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
         dp = [0] * len(boxes)
