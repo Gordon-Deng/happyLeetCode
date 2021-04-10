@@ -52,6 +52,24 @@
 #         self.left = left
 #         self.right = right
 # T:O(N) S:O(N)
+# class Solution:
+#     def deepestLeavesSum(self, root: TreeNode) -> int:
+#         q = collections.deque([(root, 0)])
+#         maxdep, total = -1, 0
+#         while len(q) > 0:
+#             node, dep = q.pop()
+#             if dep > maxdep:
+#                 maxdep, total = dep, node.val
+#             elif dep == maxdep:
+#                 total += node.val
+#             if node.left:
+#                 q.append((node.left, dep + 1))
+#             if node.right:
+#                 q.append((node.right, dep + 1))
+#         return total
+
+
+# collections.deque([(root, 0)]) 里面的[(root, 0)]就是简单的往列表中塞了一个元组，因为后面pop的时候是出两个值
 class Solution:
     def deepestLeavesSum(self, root: TreeNode) -> int:
         q = collections.deque([(root, 0)])
