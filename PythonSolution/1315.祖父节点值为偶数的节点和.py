@@ -51,8 +51,21 @@
 #         self.left = None
 #         self.right = None
 
+# T:O(N) S:O(H)
 class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
+        res = 0
+        def dfs(gp_val, p_val, node) :
+            if not node:
+                return
+            if gp_val % 2 == 0:
+                nonlocal res
+                res += node.val
+            dfs(p_val, node.val, node.left)
+            dfs(p_val, node.val, node.right)
+
+        dfs(1, 1, root)
+        return res
         
 # @lc code=end
 
