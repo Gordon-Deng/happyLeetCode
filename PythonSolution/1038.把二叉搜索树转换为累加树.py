@@ -74,8 +74,60 @@
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
-#         self.right = right
+#         self.right = right#
+
+# 方法一：反中序遍历即可
+# T:O(N)) S:O(N)
+# class Solution:
+#     def bstToGst(self, root: TreeNode) -> TreeNode:
+#         def dfs(root : TreeNode):
+#             nonlocal total
+#             if root:
+#                 dfs(root.right)
+#                 total += root.val
+#                 root.val = total
+#                 dfs(root.left)
+        
+#         total = 0
+#         dfs(root)
+#         return root
+
+# 技巧题
+# 方法二：Morris 遍历（最优）
+#1.如果当前节点的右子节点为空，处理当前节点，并遍历当前节点的左子节点；
+
+#2.如果当前节点的右子节点不为空，找到当前节点右子树的最左节点（该节点为当前节点中序遍历的前驱节点）；
+#  * 如果最左节点的左指针为空，将最左节点的左指针指向当前节点，遍历当前节点的右子节点；
+#  * 如果最左节点的左指针不为空，将最左节点的左指针重新置为空（恢复树的原状），处理当前节点，并将当前节点置为其左节点；
+#3.重复步骤 1 和步骤 2，直到遍历结束。
+# T:O(N) S:O(1)
 class Solution:
     def bstToGst(self, root: TreeNode) -> TreeNode:
+        def getSuccessor(node: TreeNode) -> TreeNode:
+            succ = node.right
+            while succ.left and succ.left != node:
+                succ = succ.left
+            return succ
+        
+        total = 0
+        node = root
+
+        while node:
+            if not node.right:
+                total += node.val
+                node.val = total
+                node = node.left
+            else:
+                succ = getSuccessor(node)
+                if not succ.left:
+                    succ.left = node
+                    node = node.right
+                else:
+                    succ.left = None
+                    total += node.val
+                    node.val = total
+                    node = node.left
+
+        return root
 # @lc code=end
 
