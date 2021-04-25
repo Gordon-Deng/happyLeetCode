@@ -100,6 +100,7 @@
 #  * 如果最左节点的左指针为空，将最左节点的左指针指向当前节点，遍历当前节点的右子节点；
 #  * 如果最左节点的左指针不为空，将最左节点的左指针重新置为空（恢复树的原状），处理当前节点，并将当前节点置为其左节点；
 #3.重复步骤 1 和步骤 2，直到遍历结束。
+# https://zhuanlan.zhihu.com/p/101321696
 # T:O(N) S:O(1)
 class Solution:
     def bstToGst(self, root: TreeNode) -> TreeNode:
