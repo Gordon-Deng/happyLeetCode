@@ -53,6 +53,9 @@
 #         self.left = None
 #         self.right = None
 
+# 纪念，这应该是我第一道题，我以后会有更多道题，一定会的
+# 我失败了好久，我不甘心
+# T:O(H+k) S:O(H+k),H 指的是树的高度
 class Solution:
     def kthSmallest(self, root: TreeNode, k: int) -> int:
         WHITE, GRAY = 0, 1
