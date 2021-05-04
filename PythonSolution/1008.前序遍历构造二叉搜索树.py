@@ -50,19 +50,13 @@
 #         self.right = right
 class Solution:
     def bstFromPreorder(self, preorder: List[int]) -> TreeNode:
-        s, p = [], preorder and [(0, len(preorder), -1)]
-        while p:
-            l, r, f = p.pop()
+        def f(l, r):
             if l < r:
-                s.append(TreeNode(preorder[l]))
-                if f >= 0:
-                    if s[-1].val < s[f].val:
-                        s[f].left = s[-1]
-                    else:
-                        s[f].right = s[-1]
-                devide = next((i for i in range(l + 1, r) if preorder[i] > s[-1].val), r)
-                p.append((devide, r, l))
-                p.append((l + 1, devide, l))
-        return s and s[0]
+                root = TreeNode(preorder[l])
+                devide = next((i for i in range(l + 1, r) if preorder[i] > root.val), r)
+                root.left = f(l + 1, devide)
+                root.right = f(devide, r)
+                return root
+        return f(0, len(preorder))
 # @lc code=end
 
