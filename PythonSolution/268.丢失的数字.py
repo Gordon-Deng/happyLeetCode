@@ -68,7 +68,7 @@
 
 # @lc code=start
 
-# 位运算
+# 位运算,seasons = ['Spring', 'Summer', 'Fall', 'Winter'] = (0, 'Spring')
 # T:O(N)) S:O(N)
 class Solution:
     def missingNumber(self, nums):
