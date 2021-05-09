@@ -62,6 +62,7 @@
 #         self.right = right
 
 # BFS,先放右边的节点
+# DFS因为要加level的判断，所以反而没有BFS巧妙
 # T:O(N) S:O(WIDHT)
 class Solution:
     def findBottomLeftValue(self, root: TreeNode) -> int:
