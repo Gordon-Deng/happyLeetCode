@@ -60,7 +60,18 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# T:O(N) S:O(WIDHT)
 class Solution:
     def findBottomLeftValue(self, root: TreeNode) -> int:
+        queue = collections.deque([root])
+        while queue:
+            node = queue.popleft()
+            # 先右后左
+            if node.right: 
+                queue.append(node.right)
+            if node. left:
+                queue.append(node.left)
+        return node.val
 # @lc code=end
 
