@@ -79,6 +79,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# T:O(N) S:O(H)
 class Solution:
     def removeLeafNodes(self, root: TreeNode, target: int) -> TreeNode:
         if not root:
