@@ -66,7 +66,7 @@
 #         self.left = left
 #         self.right = right
 
-t
+# T:O(N) S:O(1)
 class Solution:
     def flatten(self, root: TreeNode) -> None:
         curr = root
