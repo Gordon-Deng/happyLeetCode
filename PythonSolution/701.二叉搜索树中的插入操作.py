@@ -65,6 +65,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# T:O(N) S:O(1)
 class Solution:
     def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
         if not root:
