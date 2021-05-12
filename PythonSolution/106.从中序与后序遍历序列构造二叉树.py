@@ -43,5 +43,14 @@
 #         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        def dfs(inorder, i_start, i_end, postorder, p_start, p_end):
+            if i_start > i_end: return None
+            if i_start == i_end: return TreeNode(inorder[i_start])
+            node = TreeNode(postorder[p_end])
+            i = inorder.index(postorder[p_end])
+            node.left = dfs(inorder, i_start, i - 1, postorder, p_start, p_start + (i - 1 - i_start))
+            node.right = dfs(inorder, i + 1, i_end, postorder, p_start + (i - 1 - i_start) + 1, p_end - 1)
+            return node
+        return dfs(inorder, 0, len(inorder) - 1, postorder, 0, len(postorder) - 1)
 # @lc code=end
 
