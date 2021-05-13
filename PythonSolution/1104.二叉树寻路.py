@@ -48,6 +48,9 @@
 #
 
 # @lc code=start
+
+# res[::-1]倒序 math.log2()求底数  // 2整除
+
 class Solution:
     def pathInZigZagTree(self, label: int) -> List[int]:    
         if label == 0: return []
