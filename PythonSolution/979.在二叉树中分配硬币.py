@@ -76,7 +76,7 @@
 #         self.right = right
 
 # DFS
-# T:O() S:O()
+# T:O(N) S:O(H)
 class Solution:
     def distributeCoins(self, root: TreeNode) -> int:
         if not root: return 0
