@@ -73,7 +73,22 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+#         self.right = right
+
+# DFS
+# T:O() S:O()
 class Solution:
     def distributeCoins(self, root: TreeNode) -> int:
+        if not root: return 0
+        self.count = 0
+
+        def dfs(node):
+            if not node: return 0
+            left, right = dfs(node.left), dfs(node.right)
+            self.count += abs(left) + abs(right)
+            return node.val + left + right - 1
+
+        dfs(root)
+        return self.count
 # @lc code=end
 
