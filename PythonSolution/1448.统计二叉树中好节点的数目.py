@@ -63,6 +63,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# DFS
+# T:O(N) S:O(N)
 class Solution:
     def __init__(self):
         self.counter = 0
