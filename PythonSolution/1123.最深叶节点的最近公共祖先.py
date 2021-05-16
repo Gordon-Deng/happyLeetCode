@@ -75,6 +75,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# T:O(N) S:O(H)
 class Solution:
     def lcaDeepestLeaves(self, root: TreeNode) -> TreeNode:
         def dfs(root):
