@@ -58,5 +58,6 @@ class Solution:
                 G[i] += G[j-1] * G[i-j]
 
         return G[n]
+        
 # @lc code=end
 
