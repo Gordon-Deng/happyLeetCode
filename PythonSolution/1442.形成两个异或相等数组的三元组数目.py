@@ -73,7 +73,22 @@
 #
 
 # @lc code=start
+
+# 前缀异或
 class Solution:
     def countTriplets(self, arr: List[int]) -> int:
+        n = len(arr)
+        s = [0]
+        for val in arr:
+            s.append(s[-1] ^ val)
+        
+        ans = 0
+        for i in range(n):
+            for j in range(i + 1, n):
+                for k in range(j, n):
+                    if s[i] == s[k + 1]:
+                        ans += 1
+        
+        return ans
 # @lc code=end
 
