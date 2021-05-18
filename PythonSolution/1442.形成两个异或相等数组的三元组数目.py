@@ -74,21 +74,20 @@
 
 # @lc code=start
 
-# 前缀异或
+# 前缀异或，Counter()
+# T:O(N) S:O(N)
 class Solution:
     def countTriplets(self, arr: List[int]) -> int:
-        n = len(arr)
-        s = [0]
-        for val in arr:
-            s.append(s[-1] ^ val)
-        
-        ans = 0
-        for i in range(n):
-            for j in range(i + 1, n):
-                for k in range(j, n):
-                    if s[i] == s[k + 1]:
-                        ans += 1
-        
+        cnt, total = Counter(), Counter()
+        ans = s = 0
+
+        for k, val in enumerate(arr):
+            if (t := s ^ val) in cnt:
+                ans += cnt[t] * k - total[t]
+            cnt[s] += 1
+            total[s] += k
+            s = t
+
         return ans
 # @lc code=end
 
