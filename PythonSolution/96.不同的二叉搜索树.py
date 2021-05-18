@@ -42,7 +42,6 @@
 #
 
 # @lc code=start
-
 # Math
 # T:O(N^2) S:O(N)
 class Solution:
