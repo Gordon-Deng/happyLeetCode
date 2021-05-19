@@ -54,5 +54,33 @@
 #         self.right = right
 class Solution:
     def findFrequentTreeSum(self, root: TreeNode) -> List[int]:
+        
+        # 生成默认的字典 相当于 java中的 Map.getOrDefault(key,0)
+        tree_dict = collections.defaultdict(int)
+        
+        # 递归 遍历出所有 子的元素和 并用 字典记录
+        def helper(root):
+            if not root:return 0
+            left = helper(root.left)
+            right = helper(root.right)
+            temp = left + right + root.val
+            tree_dict[temp] += 1
+            return temp
+        if not root:return []
+        helper(root)
+        
+        # 记录出现最多次的 子树的元素和
+        tree_max = 0
+        # python 通过 dict.values() 遍历出字典中的 value 
+        # 类似于 java中的 for(Map.Entry<String, String> entry : map.entrySet())
+        for cnt in tree_dict.values():
+            tree_max = max(cnt,tree_max)
+        res_list = []
+        
+        # python 通过 dict.items() 遍历出字典中的key 和 value
+        for key, val in tree_dict.items():
+            if val == tree_max:
+                res_list.append(key)
+        return res_list
 # @lc code=end
 
