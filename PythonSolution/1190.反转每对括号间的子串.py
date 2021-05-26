@@ -61,17 +61,30 @@
 class Solution:
     def reverseParentheses(self, s: str) -> str:
         stack = []
-        for c in s:
-            if c != ')':
-                stack.append(c)
-            elif c == ')':
-                tmp = []
-                # 注意stack不为空才可以读取栈顶
-                while stack and stack[-1] != '(':
-                    tmp.append(stack.pop())
-                if stack:
-                    stack.pop() # 将左括号抛出
-                stack += tmp
-        return "".join(stack)
+        n = len(s)
+        pair = [0] * n
+
+        # 预先存储左右括号的映射关系
+        for i in range(n):
+            if s[i] == '(':
+                stack.append(i)
+            if s[i] == ')':
+                j = stack.pop()
+                pair[i] = j
+                pair[j] = i 
+        
+        index = 0
+        # step = 1 表示向右走, step = -1 表示向左走
+        step = 1
+        result = []
+        while index < n:
+            if s[index] == '(' or s[index] == ')':
+                index = pair[index]
+                # 走的方向反转
+                step = -step
+            else:
+                result.append(s[index])
+            index += step
+        return "".join(result)
 # @lc code=end
 
