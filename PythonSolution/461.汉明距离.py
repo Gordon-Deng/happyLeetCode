@@ -43,8 +43,8 @@ class Solution:
         ret = 0
         s = x ^ y
         while s :
-            s  &= s - 1
-            ret +1
+            s  = s&(s - 1)
+            ret += 1
         return ret
 # @lc code=end
 
