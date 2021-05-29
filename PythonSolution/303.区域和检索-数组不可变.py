@@ -60,6 +60,7 @@
 #
 
 # @lc code=start
+# T:O(N) S:O(N)
 class NumArray:
 
     def __init__(self, nums: List[int]):
