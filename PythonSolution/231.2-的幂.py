@@ -37,12 +37,13 @@
 # @lc code=start
 
 # n & (n - 1) 将n 二进制表示的最低位 11 移除
-# class Solution:
-#     def isPowerOfTwo(self, n: int) -> bool:
-#         return n > 0 and (n & (n - 1)) == 0
-
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
-        return n > 0 and (n & -n) == n
+        return n > 0 and (n & (n - 1)) == 0
+
+# n & (-n) 获取 n 二进制表示的最低位的 11
+# class Solution:
+#     def isPowerOfTwo(self, n: int) -> bool:
+#         return n > 0 and (n & -n) == n
 # @lc code=end
 
