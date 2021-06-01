@@ -76,6 +76,9 @@
     # accumulate([1,2,3,4,5], initial=100) --> 100 101 103 106 110 115
     # accumulate([1,2,3,4,5], operator.mul) --> 1 2 6 24 120
 
+# 对于区间 [x_1, y_1][x 1 ​ ,y 1 ​ ] 以及 [x_2, y_2][x 2 ​ ,y 2 ​ ]
+# 它们没有交集当且仅当 x_1 > y_2x 1 ​ >y 2 ​ 或者 y_1 < x_2y 1 ​ <x 2 
+
 # T:O(N+Q) S:O(N)
 class Solution:
     def canEat(self, candiesCount: List[int], queries: List[List[int]]) -> List[bool]:
