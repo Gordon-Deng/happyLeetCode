@@ -47,7 +47,7 @@ class Solution:
             cur.next = ListNode(l1.val + l2.val + cur.val // 10)
             cur.val = cur.val % 10
             cur = cur.next
-            
+
         if cur.val >= 10:
             cur.next = ListNode(cur.val // 10)
             cur.val = cur.val % 10
