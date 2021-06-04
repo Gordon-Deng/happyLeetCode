@@ -63,7 +63,22 @@
 #
 
 # @lc code=start
+
+# 同余定理： 即当两个数除以某个数的余数相等，那么二者相减后肯定可以被该数整除。
+# https://leetcode-cn.com/problems/continuous-subarray-sum/solution/523-lian-xu-de-zi-shu-zu-he-qian-zhui-he-zl78/
+# T:O(M) S:O(min(M,k))
 class Solution:
-    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+    def checkSubarraySum(self, nums, k):
+        d = {0: -1}
+        pre = 0
+        for index, num in enumerate(nums):
+            pre += num
+            rem = pre % k
+            i = d.get(rem, index)
+            if i == index:
+                d[rem] = index
+            elif i <= index - 2:
+                return True
+        return False
 # @lc code=end
 
