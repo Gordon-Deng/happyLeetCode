@@ -86,6 +86,5 @@
                 return f(m, n, i-1)
             return max(f(m, n, i-1), 1+f(m-count['0'], n-count['1'], i-1))
         return f(m, n, len(strs) - 1)
-
 # @lc code=end
 
