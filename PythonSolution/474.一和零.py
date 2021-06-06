@@ -71,20 +71,17 @@
 #         return dp[m][n]
 
 # 让面试官一亮的做法
- class Solution:
+class Solution:
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
-        c = []
-        for s in strs:
-            c.append(Counter(s))
-
-        @lru_cache(None)
-        def f(m, n, i):
-            if (m <= 0 and n <= 0) or i < 0:
+        count = [Counter(s) for s in strs]
+        @cache
+        def dpCache(m, n, i):
+            if i < 0 or (not m and not n):
                 return 0
-            count = c[i]
-            if m < count['0'] or n < count['1']:
-                return f(m, n, i-1)
-            return max(f(m, n, i-1), 1+f(m-count['0'], n-count['1'], i-1))
-        return f(m, n, len(strs) - 1)
+            elif m < (M := count[i]['0']) or n < (N := count[i]['1']):
+                return dpCache(m, n, i - 1)
+            else:
+                return max(dpCache(m, n, i - 1), 1 + dpCache(m - M, n - N, i - 1))
+        return dpCache(m, n, len(strs) - 1)
 # @lc code=end
 
