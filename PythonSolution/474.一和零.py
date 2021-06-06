@@ -57,7 +57,19 @@
 # @lc code=start
 
 # 传统做法
+# python的入门坑。 dp = [[]]*3表示开辟三份地址，且地址相同。所以你改动一个，就全改。最内层可以用 [ ] *，最外层必须用 for _ in range()
+# T:O(lmn+L) S:O(mn)
 class Solution:
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+        for s in strs:
+            cnt0 = s.count('0')
+            cnt1 = s.count('1')
+            for i in range(m, cnt0 - 1, -1):    #0-1背包问题，内循环逆序
+                for j in range(n, cnt1 - 1, -1):
+                    dp[i][j] = max(dp[i][j], dp[i-cnt0][j-cnt1] + 1)
+        return dp[m][n]
+
+
 # @lc code=end
 
