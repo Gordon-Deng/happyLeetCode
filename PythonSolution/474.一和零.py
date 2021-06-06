@@ -55,6 +55,8 @@
 #
 
 # @lc code=start
+
+# 传统做法
 class Solution:
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
 # @lc code=end
