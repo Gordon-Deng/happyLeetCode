@@ -59,17 +59,33 @@
 # 传统做法
 # python的入门坑。 dp = [[]]*3表示开辟三份地址，且地址相同。所以你改动一个，就全改。最内层可以用 [ ] *，最外层必须用 for _ in range()
 # T:O(lmn+L) S:O(mn)
-class Solution:
-    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
-        dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
-        for s in strs:
-            cnt0 = s.count('0')
-            cnt1 = s.count('1')
-            for i in range(m, cnt0 - 1, -1):    #0-1背包问题，内循环逆序
-                for j in range(n, cnt1 - 1, -1):
-                    dp[i][j] = max(dp[i][j], dp[i-cnt0][j-cnt1] + 1)
-        return dp[m][n]
+# class Solution:
+#     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+#         dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+#         for s in strs:
+#             cnt0 = s.count('0')
+#             cnt1 = s.count('1')
+#             for i in range(m, cnt0 - 1, -1):    #0-1背包问题，内循环逆序
+#                 for j in range(n, cnt1 - 1, -1):
+#                     dp[i][j] = max(dp[i][j], dp[i-cnt0][j-cnt1] + 1)
+#         return dp[m][n]
 
+# 让面试官一亮的做法
+ class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        c = []
+        for s in strs:
+            c.append(Counter(s))
+
+        @lru_cache(None)
+        def f(m, n, i):
+            if (m <= 0 and n <= 0) or i < 0:
+                return 0
+            count = c[i]
+            if m < count['0'] or n < count['1']:
+                return f(m, n, i-1)
+            return max(f(m, n, i-1), 1+f(m-count['0'], n-count['1'], i-1))
+        return f(m, n, len(strs) - 1)
 
 # @lc code=end
 
