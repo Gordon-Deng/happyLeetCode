@@ -59,21 +59,36 @@
 #
 
 # @lc code=start
+# class Solution:
+#     def findTargetSumWays(self, nums: List[int], target: int) -> int:
+#         #正数和为x，负数和绝对值为y   x + y = sum(nums)  x - y = target   x = (sum+target)/2
+#         tot_sum = sum(nums)
+#         if tot_sum < target :
+#             return 0
+#         positive_sum = (tot_sum + target) // 2
+#         if (tot_sum + target) % 2 == 1:
+#             return 0
+        
+#         dp = [0 for _ in range(positive_sum + 1)]
+#         dp[0] = 1 
+#         for num in nums:
+#             for x in range(positive_sum, num - 1, -1):
+#                 dp[x] += dp[x-num]
+#         return dp[positive_sum]
+
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        #正数和为x，负数和绝对值为y   x + y = sum(nums)  x - y = target   x = (sum+target)/2
-        tot_sum = sum(nums)
-        if tot_sum < target :
-            return 0
-        positive_sum = (tot_sum + target) // 2
-        if (tot_sum + target) % 2 == 1:
-            return 0
-        
-        dp = [0 for _ in range(positive_sum + 1)]
-        dp[0] = 1 
-        for num in nums:
-            for x in range(positive_sum, num - 1, -1):
-                dp[x] += dp[x-num]
-        return dp[positive_sum]
+        s = sum(nums)
+        dp = [collections.defaultdict(int) for i in range(len(nums))]
+
+        dp[0][nums[0]] = 1
+        dp[0][-nums[0]] +=1
+
+        for i in range(1, len(nums)):
+            for key in dp[i - 1]:
+                dp[i][key + nums[i]] += dp[i - 1][key]
+                dp[i][key - nums[i]] += dp[i - 1][key]
+
+        return dp[-1][target]
 # @lc code=end
 
