@@ -66,14 +66,36 @@
 # @lc code=start
 
 # 精简做法
+# class Solution:
+#     def lastStoneWeightII(self, stones: List[int]) -> int:
+#         sums=sum(stones)
+#         dp=[0]*(sums//2+1)
+#         for x in stones:
+#             for i in range(sums//2,x-1,-1):
+#                 dp[i]=max(dp[i],dp[i-x]+x)
+#         return sums-2*dp[sums//2]
+
+# 我的垃圾解法
 class Solution:
     def lastStoneWeightII(self, stones: List[int]) -> int:
-        sums=sum(stones)
-        dp=[0]*(sums//2+1)
-        for x in stones:
-            for i in range(sums//2,x-1,-1):
-                dp[i]=max(dp[i],dp[i-x]+x)
-        return sums-2*dp[sums//2]
+        if not stones or len(stones) == 0:
+            return 0
 
+        lenth = len(stones)
+        sum = 0
+        for i in range(lenth):
+            sum += stones[i]
+
+        maxWeight = (int)(sum / 2)
+        dp = [0] * (maxWeight+1)
+        dp[0] = 1
+
+        for i in stones:
+            for j in range(maxWeight, i - 1, -1):
+                dp[j] = dp[j] or dp[j - i]
+
+        for x in range(maxWeight, -1, -1):
+            if dp[x]:
+                return sum - 2 * x
 # @lc code=end
 
