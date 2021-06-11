@@ -50,6 +50,7 @@
 # https://leetcode-cn.com/problems/perfect-squares/solution/gong-shui-san-xie-xiang-jie-wan-quan-bei-nqes/
 
 # T:O(N*跟号N) S:O(N)
+# 四平方和定理证明了任意一个正整数都可以被表示为至多四个正整数的平方和。这给出了本题的答案的上界。
 class Solution:
     def numSquares(self, n: int) -> int:
         INF = 10 ** 9 + 7
