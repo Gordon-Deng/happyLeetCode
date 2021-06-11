@@ -86,5 +86,32 @@
 # 困难什么鬼
 class Solution:
     def largestNumber(self, cost: List[int], target: int) -> str:
+
+        dp = [[''] * (target + 1) for _ in range(10)]
+
+        for i in range(1, 10):
+            cur_digit = chr(ord('0') + i)
+            cur_cost = cost[i - 1]
+
+            for ta in range(target + 1):
+
+                cur = dp[i - 1][ta]
+
+                if ta - cur_cost >= 0 and (dp[i][ta - cur_cost] or (dp[i][ta - cur_cost] == '' and ta - cur_cost == 0)):
+                    ano = cur_digit + dp[i][ta - cur_cost]
+
+                    if len(ano) > len(cur):
+                        cur = ano
+                    elif len(ano) == len(cur):
+                        cur = max(cur, ano)
+
+                dp[i][ta] = cur
+
+        ans = dp[9][target]
+        if not ans:
+            return '0'
+        else:
+            return ans
+
 # @lc code=end
 
