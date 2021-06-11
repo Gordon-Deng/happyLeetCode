@@ -46,7 +46,28 @@
 #
 
 # @lc code=start
+
+# https://leetcode-cn.com/problems/perfect-squares/solution/gong-shui-san-xie-xiang-jie-wan-quan-bei-nqes/
+
+# T:O(N*跟号N) S:O(N)
 class Solution:
     def numSquares(self, n: int) -> int:
+        INF = 10 ** 9 + 7
+
+        nums = []
+        for x in range(1, int(n ** 0.5) + 1):
+            nums.append(x ** 2)
+
+        dp = [INF for _ in range(n + 1)]
+        for x in nums:
+            dp[x] = 1
+            
+        for i in range(1, n + 1):
+            for j in nums:          #背包问题，可以顺序
+                if i >= j:
+                    dp[i] = min(dp[i], dp[i-j] + 1)
+                else:
+                    break
+        return dp[n]
 # @lc code=end
 
