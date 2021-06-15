@@ -52,5 +52,6 @@
 # @lc code=start
 class Solution:
     def stoneGame(self, piles: List[int]) -> bool:
+        return True
 # @lc code=end
 
