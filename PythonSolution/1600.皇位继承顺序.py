@@ -104,5 +104,39 @@
 #
 
 # @lc code=start
+class ThroneInheritance:
+
+    def __init__(self, kingName: str):
+        self.king = kingName
+        self.inheritanceOrder = []
+        # 死亡名单，1表示死亡
+        self.isDead = {kingName: 0}
+        # 家谱，每个人名下仅存储他的直接子女的名字
+        self.descendants = {kingName: []}
+
+
+    def birth(self, parentName: str, childName: str) -> None:
+        self.descendants[parentName].append(childName)
+        # 注意要给新生儿“上户口”，不仅要确认其存活状态，也要考虑他以后可能会生育
+        self.isDead[childName] = 0
+        self.descendants[childName] = []
+
+
+    def death(self, name: str) -> None:
+        self.isDead[name] = 1
+
+
+    def getInheritanceOrder(self) -> List[str]:
+        # 注意该方法多次调用时，每一次输出继承顺序前self.inheritanceOrder保存的是上一次的结果，因此需要先清零
+        self.inheritanceOrder = []
+        
+        def dfs(name):
+            if not self.isDead[name]:
+                self.inheritanceOrder.append(name)
+            for i in range(len(self.descendants[name])):
+                dfs(self.descendants[name][i])
+        
+        dfs(self.king)
+        return self.inheritanceOrder
 # @lc code=end
 
