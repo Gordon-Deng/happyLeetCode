@@ -66,13 +66,24 @@
 #
 
 # @lc code=start
+def getCnt(x):
+    ans, i = 0, x
+    while i > 0:
+        ans += 1
+        i -= lowbit(i)
+    return ans
+    
+def lowbit(x):
+    return x & -x
+
+map = defaultdict(list)
+for h in range(12):
+    for m in range(60):
+        tot = getCnt(h) + getCnt(m)
+        map[tot].append(f"{h}:{m:02d}")
+
 class Solution:
     def readBinaryWatch(self, turnedOn: int) -> List[str]:
-        ans = list()
-        for h in range(12):
-            for m in range(60):
-                if bin(h).count("1") + bin(m).count("1") == turnedOn:
-                    ans.append(f"{h}:{m:02d}")
-        return ans
+        return map[turnedOn]
 # @lc code=end
 
