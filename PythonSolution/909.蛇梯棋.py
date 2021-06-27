@@ -71,7 +71,7 @@
 # @lc code=start
 
 # 贪心
-
+# 二维的矩阵「扁平化」为一维的矩阵，BFS
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         # 获得如何跳转的映射
