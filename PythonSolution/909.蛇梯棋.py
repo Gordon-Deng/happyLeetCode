@@ -118,6 +118,5 @@ class Solution:
                             visited.add(new_node)
             return -1
         return BFS(1, 0)
-        # print(road)
 # @lc code=end
 
