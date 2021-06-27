@@ -69,8 +69,55 @@
 #
 
 # @lc code=start
+
+# 贪心
+
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
+        # 获得如何跳转的映射
+        def get_road(board):
+            L = len(board)
+            jiou = (L-1) % 2 
+            road = {}
+            now = 0
+            for i in range(L-1, -1, -1):
+                if i % 2 == jiou:
+                    for j in range(L):
+                        now += 1
+                        if board[i][j] != -1:
+                            road[now] = board[i][j]
+                else:
+                    for j in range(L-1, -1, -1):
+                        now += 1
+                        if board[i][j] != -1:
+                            road[now] = board[i][j]
+            return road
         
+        road = get_road(board)
+        # bfs
+        def BFS(poisition, n):
+            if board[0][0] != -1: # 如果最后一个无论如何会传走，返回-1
+                return -1
+            queue = collections.deque()
+            queue.append((poisition, n))
+            visited = set()
+            visited.add(poisition)
+            res = []
+            while queue:
+                L = len(board)
+                node, n = queue.popleft()
+                if node == L*L:
+                    return n
+                # 拓展节点
+                for i in range(1,7): 
+                    if node+i <= L*L:
+                        key = node + i
+                        new_node = road.get(key, key)
+                        if new_node not in visited:
+                            queue.append((new_node, n+1))
+                            visited.add(new_node)
+            return -1
+        return BFS(1, 0)
+        # print(road)
 # @lc code=end
 
