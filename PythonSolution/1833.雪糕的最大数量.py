@@ -61,5 +61,13 @@
 # @lc code=start
 class Solution:
     def maxIceCream(self, costs: List[int], coins: int) -> int:
+        heapq.heapify(costs)
+        ans = 0
+        while coins and costs:
+            if coins < costs[0]:
+                break
+            coins -= heapq.heappop(costs)
+            ans += 1
+        return ans
 # @lc code=end
 
