@@ -61,5 +61,6 @@ class Solution:
                 a = num
 
         return [a, b]
+        
 # @lc code=end
 
