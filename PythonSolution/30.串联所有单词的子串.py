@@ -62,19 +62,18 @@ class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
         from collections import Counter
         if not s or not words:return []
-        all_len = sum(map(len, words))
+        one_word = len(words[0])
+        all_len = len(words) * one_word
         n = len(s)
         words = Counter(words)
         res = []
         for i in range(0, n - all_len + 1):
             tmp = s[i:i+all_len]
-            flag = True
-            for key in words:
-                if words[key] != tmp.count(key):
-                    flag = False
-                    break
-            if flag:res.append(i)
+            c_tmp = []
+            for j in range(0, all_len, one_word):
+                c_tmp.append(tmp[j:j+one_word])
+            if Counter(c_tmp) == words:
+                res.append(i)
         return res
-
 # @lc code=end
 
