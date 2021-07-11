@@ -46,6 +46,7 @@
         
 #         return ans 
 
+# 超时大法。。。
 class Solution:
     def trap(self, height: List[int]) -> int:
         ans = 0
