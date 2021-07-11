@@ -64,6 +64,7 @@
 #         return ans    
 
 # DP
+# T:O(N) S:O(N)
 class Solution:
     def trap(self, height: List[int]) -> int:
         # 边界条件
