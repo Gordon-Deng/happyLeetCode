@@ -110,5 +110,7 @@ class Solution:
                 right -= 1
 
         return ans
+        
+
 # @lc code=end
 
