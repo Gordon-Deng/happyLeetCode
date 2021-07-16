@@ -43,5 +43,6 @@ class Solution:
                 res = max(res, height[j] * (j - i))
                 j -= 1
         return res
+        
 # @lc code=end
 
