@@ -45,5 +45,6 @@ class Solution:
             minprice = min(minprice, price)
             maxprofit = max(maxprofit, price - minprice)
         return maxprofit
+        
 # @lc code=end
 
