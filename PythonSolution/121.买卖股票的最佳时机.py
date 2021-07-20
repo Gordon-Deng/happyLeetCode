@@ -37,6 +37,8 @@
 #
 
 # @lc code=start
+
+# T:O(N) S:O(1)
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         minprice = float('inf')
