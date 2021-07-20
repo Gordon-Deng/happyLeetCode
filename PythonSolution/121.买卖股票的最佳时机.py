@@ -42,11 +42,15 @@
 # 遍历一遍数组，计算每次 到当天为止 的最小股票价格和最大利润。
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        minprice = float('inf')
-        maxprofit = 0
-        for price in prices:
-            minprice = min(minprice, price)
-            maxprofit = max(maxprofit, price - minprice)
-        return maxprofit
+        n = len(prices)
+        if n == 0: return 0 # 边界条件
+        dp = [0] * n
+        minprice = prices[0] 
+
+        for i in range(1, n):
+            minprice = min(minprice, prices[i])
+            dp[i] = max(dp[i - 1], prices[i] - minprice)
+
+        return dp[-1]
 # @lc code=end
 
