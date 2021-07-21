@@ -47,12 +47,23 @@
 # @lc code=start
 # T:O(N) S:O(1)
 # 贪心
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         profit = 0
+#         for i in range(1, len(prices)):
+#             tmp = prices[i] - prices[i - 1]
+#             if tmp > 0: profit += tmp
+#         return profit
+
+# T:O(N) S:O(1)
+# DP:dp0 = max(dp0, dp1 + prices[i]) + dp1 = max(dp1, dp0 - prices[i])
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        profit = 0
+        dp0 = 0             # 手里没股票
+        dp1 = - prices[0]   # 手里有股票
         for i in range(1, len(prices)):
-            tmp = prices[i] - prices[i - 1]
-            if tmp > 0: profit += tmp
-        return profit
+            dp0 = max(dp0, dp1 + prices[i])
+            dp1 = max(dp1, dp0 - prices[i])
+        return dp0
 # @lc code=end
 
