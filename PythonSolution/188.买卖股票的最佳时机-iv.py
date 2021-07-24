@@ -50,7 +50,24 @@
 #
 
 # @lc code=start
+
+# T:O(N) S:O(N)
+# DP[i][0]  不持股且当天没卖出
+# DP[i][1]  持股
+# DP[i][2]  不持股且当天卖出了
 class Solution:
-    def maxProfit(self, k: int, prices: List[int]) -> int:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        
+        n = len(prices)
+        f0, f1, f2 = -prices[0], 0, 0
+        for i in range(1, n):
+            newf0 = max(f0, f2 - prices[i])
+            newf1 = f0 + prices[i]
+            newf2 = max(f1, f2)
+            f0, f1, f2 = newf0, newf1, newf2
+        
+        return max(f1, f2)
 # @lc code=end
 
