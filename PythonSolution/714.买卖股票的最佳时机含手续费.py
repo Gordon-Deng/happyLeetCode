@@ -62,5 +62,6 @@ class Solution:
         for i in range(1, n):
             sell, buy = max(sell, buy + prices[i] - fee), max(buy, sell - prices[i])
         return sell
+        
 # @lc code=end
 
