@@ -58,23 +58,45 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# class Solution:
+#     def rightSideView(self, root: TreeNode) -> List[int]:
+#         depth_flag = dict()
+#         max_dapth = -1
+
+#         stack = [(root, 0)]
+#         while stack :
+#             node, depth = stack.pop()
+
+#             if node is not None :
+#                 max_dapth = max(max_dapth, depth)
+
+#                 # setdefault新方法
+#                 depth_flag.setdefault(depth, node.val)
+#                 stack.append((node.left, depth+1))
+#                 stack.append((node.right, depth+1))
+                
+#         return [depth_flag[index] for index in range(max_dapth+1)]
+
+
 class Solution:
     def rightSideView(self, root: TreeNode) -> List[int]:
-        depth_flag = dict()
-        max_dapth = -1
+        rightmost_value_at_depth = dict() # 深度为索引，存放节点的值
+        max_depth = -1
 
-        stack = [(root, 0)]
-        while stack :
-            node, depth = stack.pop()
+        queue = deque([(root, 0)])
+        while queue:
+            node, depth = queue.popleft()
 
-            if node is not None :
-                max_dapth = max(max_dapth, depth)
+            if node is not None:
+                # 维护二叉树的最大深度
+                max_depth = max(max_depth, depth)
 
-                # setdefault新方法
-                depth_flag.setdefault(depth, node.val)
-                stack.append((node.left, depth+1))
-                stack.append((node.right, depth+1))
-                
-        return [depth_flag[index] for index in range(max_dapth+1)]
+                # 由于每一层最后一个访问到的节点才是我们要的答案，因此不断更新对应深度的信息即可
+                rightmost_value_at_depth[depth] = node.val
+
+                queue.append((node.left, depth + 1))
+                queue.append((node.right, depth + 1))
+
+        return [rightmost_value_at_depth[depth] for depth in range(max_depth + 1)]
 # @lc code=end
 
