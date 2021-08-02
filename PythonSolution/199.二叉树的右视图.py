@@ -58,24 +58,24 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# class Solution:
-#     def rightSideView(self, root: TreeNode) -> List[int]:
-#         depth_flag = dict()
-#         max_dapth = -1
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        depth_flag = dict()
+        max_dapth = -1
 
-#         stack = [(root, 0)]
-#         while stack :
-#             node, depth = stack.pop()
+        stack = [(root, 0)]
+        while stack :
+            node, depth = stack.pop()
 
-#             if node is not None :
-#                 max_dapth = max(max_dapth, depth)
+            if node is not None :
+                max_dapth = max(max_dapth, depth)
 
-#                 # setdefault新方法
-#                 depth_flag.setdefault(depth, node.val)
-#                 stack.append((node.left, depth+1))
-#                 stack.append((node.right, depth+1))
+                # setdefault新方法
+                depth_flag.setdefault(depth, node.val)
+                stack.append((node.left, depth+1))
+                stack.append((node.right, depth+1))
                 
-#         return [depth_flag[index] for index in range(max_dapth+1)]
+        return [depth_flag[index] for index in range(max_dapth+1)]
 
 
 class Solution:
