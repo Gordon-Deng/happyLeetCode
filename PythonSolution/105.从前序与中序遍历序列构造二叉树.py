@@ -51,7 +51,6 @@ class Solution:
         # 下面递归对root的左右子树求解即可
         root.left = self.buildTree(preorder[1:1 + idx], inorder[:idx])
         root.right = self.buildTree(preorder[1 + idx:], inorder[idx + 1:])
-        
         return root
 # @lc code=end
 
