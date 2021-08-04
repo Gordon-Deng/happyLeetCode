@@ -32,9 +32,6 @@
 
 # @lc code=start
 # T:O(N) S:O(N)
-# DP[i][0]  不持股且当天没卖出
-# DP[i][1]  持股
-# DP[i][2]  不持股且当天卖出了
 class Solution(object):
     def maxProfit(self, prices):
         """
