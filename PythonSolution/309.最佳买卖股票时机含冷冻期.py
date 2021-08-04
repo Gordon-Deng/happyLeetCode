@@ -35,19 +35,28 @@
 # DP[i][0]  不持股且当天没卖出
 # DP[i][1]  持股
 # DP[i][2]  不持股且当天卖出了
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        if not prices:
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+
+        if len(prices) == 1:#无法交易
             return 0
-        
-        n = len(prices)
-        f0, f1, f2 = -prices[0], 0, 0
-        for i in range(1, n):
-            newf0 = max(f0, f2 - prices[i])
-            newf1 = f0 + prices[i]
-            newf2 = max(f1, f2)
-            f0, f1, f2 = newf0, newf1, newf2
-        
-        return max(f1, f2)
+        #按照第二天(prices[1])的股票价格确定初始状态
+        buy =-min(prices[0],prices[1]) #手头持有,最大的收益即为 0-最小价格
+        sell = prices[1]-prices[0] #当日卖出, 收益固定为prices[1] - prices[0]
+        hold = 0 #当日不进行操作且手头无股票, 收益为0
+
+        #从第三天开始
+        for price in prices[2:]:
+
+            buy, sell, hold = max(buy, hold - price), price + buy, max(hold, sell)
+            #1.若当日持有, 最大受益为 max(上日hold今日买入, 继续持有上日持有的股票)
+            #2.若当日卖出, 收益固定为当日价格减去上日的成本
+            #当日不操作且收头无股票, 最大受益为 max(上日hold 今日仍hold, 上日卖出今日hold)
+
+        return max(sell, hold)
 # @lc code=end
 
