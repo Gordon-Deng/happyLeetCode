@@ -53,7 +53,7 @@ class Solution:
 
                 if dp[i][j] and j - i + 1 > max_len:
                     max_len = j - i + 1
-                    begin = i
+                    begin_index = i
         return s[begin_index:begin_index + max_len]
 # @lc code=end
 
