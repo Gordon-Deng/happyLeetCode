@@ -38,7 +38,7 @@ class Solution:
         while cur:
             temp = cur.next
             cur.next = pre
-            pre = cur
+            pre = cur 
             cur = temp
         return pre
 # @lc code=end
