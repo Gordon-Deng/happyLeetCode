@@ -80,20 +80,42 @@
 # heapq.heapify(q)堆的操作
 # 原理有点拗口，就是每次维护一个大顶堆，注意不要被窗口大小限制思想，这道题不用理固定堆的大小就为K，只需要看堆顶的最大值是否在当前窗口即可
 # 当滑动窗口移动时，若最大值不在窗口，那就弹出去，否则一值滑动一直往堆里加元素就好了
+# class Solution:
+#     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+#         n = len(nums)
+#         # 注意 Python 默认的优先队列是小根堆
+#         q = [(-nums[i], i) for i in range(k)]
+#         heapq.heapify(q)
+
+#         ans = [-q[0][0]]
+#         for i in range(k, n):
+#             heapq.heappush(q, (-nums[i], i))
+#             while q[0][1] <= i - k:
+#                 heapq.heappop(q)
+#             ans.append(-q[0][0])
+        
+#         return ans
+
+# 双端队列
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        n = len(nums)
-        # 注意 Python 默认的优先队列是小根堆
-        q = [(-nums[i], i) for i in range(k)]
-        heapq.heapify(q)
-
-        ans = [-q[0][0]]
-        for i in range(k, n):
-            heapq.heappush(q, (-nums[i], i))
-            while q[0][1] <= i - k:
-                heapq.heappop(q)
-            ans.append(-q[0][0])
+        ans = []
+        dq = deque()
         
+        for i in range(len(nums)):
+            # 只要当前遍历的元素的值比队尾大，让队尾出队列，
+            # 最终队列中的最小元素是大于当前元素的
+            while dq and dq[-1] < nums[i]:
+                dq.pop()
+            # 当前遍历的元素入队列， 此时队列中的元素一定是有序的，队列头部最大
+            dq.append(nums[i])
+            if i >= k - 1:
+                # 如果窗口即将失效（下一次循环要失效）的值与当前对列头部的值相同，那么将对头的值出队列，
+                # 注意只pop一次，可能两个4，相邻同时是最大值，
+                ans.append(dq[0])
+                # 从队列中删除即将失效的数据
+                if nums[i - k + 1] == dq[0]:
+                    dq.popleft()
         return ans
 # @lc code=end
 
