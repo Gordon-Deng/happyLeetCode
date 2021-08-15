@@ -78,6 +78,8 @@
 # @lc code=start
 
 # heapq.heapify(q)堆的操作
+# 原理有点拗口，就是每次维护一个大顶堆，注意不要被窗口大小限制思想，这道题不用理固定堆的大小就为K，只需要看堆顶的最大值是否在当前窗口即可
+# 当滑动窗口移动时，若最大值不在窗口，那就弹出去，否则一值滑动一直往堆里加元素就好了
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         n = len(nums)
