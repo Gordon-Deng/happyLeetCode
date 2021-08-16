@@ -98,11 +98,13 @@ class Solution:
             head = tail.next
         
         return hair.next
-        
+
     # 翻转一个子链表，并且返回新的头与尾
     def reverse(self, head: ListNode, tail: ListNode):
+        # 尾部要接起来
         prev = tail.next
         p = head
+        # 这里不能写成whiel prev:
         while prev != tail:
             nex = p.next
             p.next = prev
