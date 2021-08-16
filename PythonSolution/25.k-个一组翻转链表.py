@@ -77,17 +77,6 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    # 翻转一个子链表，并且返回新的头与尾
-    def reverse(self, head: ListNode, tail: ListNode):
-        prev = tail.next
-        p = head
-        while prev != tail:
-            nex = p.next
-            p.next = prev
-            prev = p
-            p = nex
-        return tail, head
-
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
         hair = ListNode(0)
         hair.next = head
@@ -109,5 +98,16 @@ class Solution:
             head = tail.next
         
         return hair.next
+        
+    # 翻转一个子链表，并且返回新的头与尾
+    def reverse(self, head: ListNode, tail: ListNode):
+        prev = tail.next
+        p = head
+        while prev != tail:
+            nex = p.next
+            p.next = prev
+            prev = p
+            p = nex
+        return tail, head
 # @lc code=end
 
