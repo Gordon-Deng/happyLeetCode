@@ -42,6 +42,7 @@
 #
 
 # @lc code=start
+# python 入参可以为0
 class DLinkedNode:
     def __init__(self, key=0, value=0):
         self.key = key
