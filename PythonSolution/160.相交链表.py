@@ -88,5 +88,6 @@ class Solution:
             A = A.next if A else headB
             B = B.next if B else headA
         return A        
+        
 # @lc code=end
 
