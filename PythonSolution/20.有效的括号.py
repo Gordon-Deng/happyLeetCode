@@ -61,15 +61,15 @@ class Solution:
         if len(s) % 2 == 1:
             return False
         parenthesesMap = {
-            ")" : "()",
+            ")" : "(",
             "}" : "{",
-            "]" : "[]"
+            "]" : "["
         }
 
         stack = list()
         for tempChar in s:
             if tempChar in parenthesesMap:
-                if not stack && stack[-1] != parenthesesMap[tempChar]:
+                if not stack or stack[-1] != parenthesesMap[tempChar]:
                     return False
                 stack.pop()
             else:
