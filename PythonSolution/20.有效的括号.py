@@ -68,7 +68,12 @@ class Solution:
 
         stack = list()
         for tempChar in s:
-
-        
+            if tempChar in parenthesesMap:
+                if not stack && stack[-1] != parenthesesMap[tempChar]:
+                    return False
+                stack.pop()
+            else:
+                stack.append(tempChar)
+        return not stack   
 # @lc code=end
 
