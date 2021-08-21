@@ -58,6 +58,17 @@
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:
+        if len(s) % 2 == 1:
+            return False
+        parenthesesMap = {
+            ")" : "()",
+            "}" : "{",
+            "]" : "[]"
+        }
+
+        stack = list()
+        for tempChar in s:
+
         
 # @lc code=end
 
