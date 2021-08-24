@@ -63,7 +63,7 @@
 
 # @lc code=start
 #  动态规划表的表项含义不是“前n个数的最大上升子序长度”，而是“以nums[i]结尾的最大上升子序列长度”，强调你选的子序列一定是以i结尾的，而最终答案的最优子序列不一定是以nums最后一项结尾，所以要找dptable里的max
-# 0 1 0 3 2 3
+# 0 1 2 3 2 4 不能直接max(dp[i], dp[i-1]+1)的原因是，dp[i-1]限制这个倒数第二个数的位置，这就意味着以她结尾的话，前面一定得比他小，这种情况的话dp[i-1]只能是012，最后只能是012+4 =4，但选dp[j]=0123的话，最后结果就是0123+4=5
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         if not nums: return 0
