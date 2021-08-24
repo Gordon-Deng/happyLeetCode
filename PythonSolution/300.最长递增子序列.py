@@ -71,7 +71,5 @@ class Solution:
                 if nums[j] < nums[i]: # 如果要求非严格递增，将此行 '<' 改为 '<=' 即可。
                     dp[i] = max(dp[i], dp[j] + 1)
         return max(dp)
-        
-
 # @lc code=end
 
