@@ -49,7 +49,7 @@ class Solution:
 
         left, right, top, bottom = 0, l-1, 0, r-1
 
-        if left <= right and top <= bottom:
+        while left <= right and top <= bottom:
             for colum in range(left, right+1):
                 res.append(matrix[top][colum])
             for row in range(top+1, bottom + 1):
