@@ -60,6 +60,24 @@
 
 # @lc code=start
 class Solution:
+    def dfs(self, grid, r, c):
+        row , column = len(grid), len(grid[0])
+        grid[r][c] = 0
+        for x, y in [(r -1, c), (r+1, c), (r, c - 1), (r, c+1)]:
+            if 0<=x<row and 0<=y<column and grid[x][y] == "1":
+                self.dfs(grid, x, y)
+
     def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid or 0 == len(grid[0]):
+            return 0
+        max_row, max_column = len(grid), len(grid[0])
+        res = 0
+
+        for i in range(max_row):
+            for j in range(max_column):
+                if grid[i][j] == "1":
+                    res += 1
+                    self.dfs(grid, i, j)
+        return res
 # @lc code=end
 
