@@ -46,7 +46,7 @@ class Solution:
         for i in range(n):
             if(nums[i]>0):
                 return res
-            # 两行以上
+            # 防止越界，并且可以过滤重复的结果
             if(i>0 and nums[i]==nums[i-1]):
                 continue
             L=i+1
