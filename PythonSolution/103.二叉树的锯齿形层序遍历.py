@@ -92,7 +92,6 @@ class Solution:
             ans.append(list(level_queue))
             # 维护更新 is_even_level
             is_even_level = not is_even_level
-        
         return ans
 # @lc code=end
 
