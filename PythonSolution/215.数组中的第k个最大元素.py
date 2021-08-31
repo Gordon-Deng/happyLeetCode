@@ -42,63 +42,85 @@
 #                 heapq.heappop(heap)
 #         return heap[0]
 
+# class Solution:
+#     def findKthLargest(self, nums: List[int], k: int) -> int:
+#         heap = Heap(k + 1)
+#         for num in nums:
+#             if not heap.push(num):
+#                 heap.pop()
+#                 heap.push(num)
+#         if heap.size == k + 1:
+#             heap.pop()
+#         return heap.peek()
+        
+# class Heap:
+#     def __init__(self, length):
+#         self.heap = [0] * (length + 1)
+#         self.size = 0
+    
+#     def push(self, val):
+#         if self.size == len(self.heap) - 1:
+#             return False
+#         self.size += 1
+#         self.heap[self.size] = val
+#         self.shift_up(self.size)
+#         return True
+    
+#     def pop(self):
+#         val = self.heap[1]
+#         self.heap[1] = self.heap[self.size]
+#         self.heap[self.size] = 0
+#         self.size -= 1
+#         self.shift_down(1)
+#         return val
+    
+#     def peek(self):
+#         return self.heap[1]
+    
+#     def shift_up(self, i):
+#         val = self.heap[i]
+#         while i >> 1 > 0:
+#             parent = i >> 1
+#             if val < self.heap[parent]:
+#                 self.heap[i] = self.heap[parent]
+#                 i = parent
+#             else:
+#                 break
+#         self.heap[i] = val
+    
+#     def shift_down(self, i):
+#         val = self.heap[i]
+#         while i << 1 <= self.size:
+#             child = i << 1
+#             if child != self.size and self.heap[child + 1] < self.heap[child]:
+#                 child += 1
+#             if val > self.heap[child]:
+#                 self.heap[i] = self.heap[child]
+#                 i = child
+#             else:
+#                 break
+#         self.heap[i] = val
+
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        heap = Heap(k + 1)
-        for num in nums:
-            if not heap.push(num):
-                heap.pop()
-                heap.push(num)
-        if heap.size == k + 1:
-            heap.pop()
-        return heap.peek()
-        
-class Heap:
-    def __init__(self, length):
-        self.heap = [0] * (length + 1)
-        self.size = 0
-    
-    def push(self, val):
-        if self.size == len(self.heap) - 1:
-            return False
-        self.size += 1
-        self.heap[self.size] = val
-        self.shift_up(self.size)
-        return True
-    
-    def pop(self):
-        val = self.heap[1]
-        self.heap[1] = self.heap[self.size]
-        self.heap[self.size] = 0
-        self.size -= 1
-        self.shift_down(1)
-        return val
-    
-    def peek(self):
-        return self.heap[1]
-    
-    def shift_up(self, i):
-        val = self.heap[i]
-        while i >> 1 > 0:
-            parent = i >> 1
-            if val < self.heap[parent]:
-                self.heap[i] = self.heap[parent]
-                i = parent
+        def findTopKth(low, high):
+            pivot = random.randint(low, high)
+            nums[low], nums[pivot] = nums[pivot], nums[low]
+            base = nums[low]
+            i = low
+            j = low + 1
+            while j <= high:
+                if nums[j] > base:
+                    nums[i + 1], nums[j] = nums[j], nums[i + 1]
+                    i += 1
+                j += 1
+            nums[low], nums[i] = nums[i], nums[low]
+            if i == k - 1:
+                return nums[i]
+            elif i > k - 1:
+                return findTopKth(low, i - 1)
             else:
-                break
-        self.heap[i] = val
-    
-    def shift_down(self, i):
-        val = self.heap[i]
-        while i << 1 <= self.size:
-            child = i << 1
-            if child != self.size and self.heap[child + 1] < self.heap[child]:
-                child += 1
-            if val > self.heap[child]:
-                self.heap[i] = self.heap[child]
-                i = child
-            else:
-                break
-        self.heap[i] = val
+                return findTopKth(i + 1, high)
+        return findTopKth(0, len(nums) - 1)
 # @lc code=end
 
