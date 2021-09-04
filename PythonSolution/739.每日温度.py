@@ -47,6 +47,8 @@
 #
 
 # @lc code=start
+
+# 每一个都能成为峰值，所以stack里面不止一个原素，最后都会一一弹出来
 class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         l = len(T)
