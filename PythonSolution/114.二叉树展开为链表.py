@@ -66,6 +66,21 @@
 #         self.left = left
 #         self.right = right
 
+# T:O(N) S:O(1)
+# 终极版
+class Solution:
+    def flatten(self, root: TreeNode) -> None:
+        curr = root
+        while curr:
+            if curr.left:
+                predecessor = nxt = curr.left
+                while predecessor.right:
+                    predecessor = predecessor.right
+                predecessor.right = curr.right
+                curr.left = None
+                curr.right = nxt
+            curr = curr.right
+
 # 低端版
 # class Solution:
 #     def flatten(self, root: TreeNode) -> None:
@@ -85,25 +100,25 @@
 #             prev.right = curr
 
 # 高端版
-class Solution(object):
-    def flatten(self, root):
-        """
-        :type root: TreeNode
-        :rtype: None Do not return anything, modify root in-place instead.
-        """
-        if not root:
-            return
+# class Solution(object):
+#     def flatten(self, root):
+#         """
+#         :type root: TreeNode
+#         :rtype: None Do not return anything, modify root in-place instead.
+#         """
+#         if not root:
+#             return
 
-        self.flatten(root.left)
-        self.flatten(root.right)
+#         self.flatten(root.left)
+#         self.flatten(root.right)
 
-        root.left, root.right = root.right, root.left
+#         root.left, root.right = root.right, root.left
 
-        most_right = root
-        while most_right.right:
-            most_right = most_right.right
+#         most_right = root
+#         while most_right.right:
+#             most_right = most_right.right
 
-        most_right.right = root.left
-        root.left = None
+#         most_right.right = root.left
+#         root.left = None
 # @lc code=end
 
