@@ -51,6 +51,8 @@
 #
 
 # @lc code=start
+
+# 原地哈希
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         n = len(nums)
