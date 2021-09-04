@@ -52,7 +52,8 @@ class Solution:
     def merge_sort(self, lists: List[ListNode], l: int, r: int) -> ListNode:
         if l == r:
             return lists[l]
-        mid = (l + r) // 2
+        # 用一下位运算
+        mid = (l + r) > 1
         L = self.merge_sort(lists, l, mid)
         R = self.merge_sort(lists, mid + 1, r)
         return self.merge(L, R)
