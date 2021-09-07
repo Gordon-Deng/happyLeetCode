@@ -68,5 +68,6 @@ class Solution:
                                                 # 如此反复。
             stack.append(idx)
         return res
+        
 # @lc code=end
 
