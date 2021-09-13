@@ -51,6 +51,7 @@
 
 # T:O(N) S:O(N)
 # dp[i]=max(dp[i−1],prices[i]−minprice)
+# https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/5xing-jie-jue-suo-you-gu-piao-mai-mai-we-evro/
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n = len(prices)
