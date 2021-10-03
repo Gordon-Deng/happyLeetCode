@@ -51,6 +51,8 @@
 # @lc code=start
 
 # https://leetcode-cn.com/problems/max-consecutive-ones-iii/solution/fen-xiang-hua-dong-chuang-kou-mo-ban-mia-f76z/
+from typing import List
+
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
         n = len(nums)
@@ -60,20 +62,19 @@ class Solution:
         sum = 0
         zero_count = 0
 
-        while left <= right and right < n:
+        while right < n:
             if nums[right] == 0 and zero_count < k:
-                right += 1
                 zero_count += 1
+                sum = max(sum, right-left+1)
+                right += 1
             elif nums[right] == 0 and zero_count == k and nums[left] == 0:
                 left += 1
                 zero_count -= 1
-            elif nums[right] == 0 and zero_count == k and nums[left] == 0:
-                left += 1       
-                zero_count += 1
-            else : 
-                right += 1
+            elif nums[right] == 0 and zero_count == k:
+                left += 1
+            else :
                 sum = max(sum, right-left+1)
-
+                right += 1
         return sum
 # @lc code=end
 
