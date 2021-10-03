@@ -40,6 +40,7 @@
 # 提示：
 # 
 # 
+# 
 # 1 <= A.length <= 20000
 # 0 <= K <= A.length
 # A[i] 为 0 或 1 
@@ -48,7 +49,31 @@
 #
 
 # @lc code=start
+
+# https://leetcode-cn.com/problems/max-consecutive-ones-iii/solution/fen-xiang-hua-dong-chuang-kou-mo-ban-mia-f76z/
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        if not nums or n == 0:
+            return 0
+        left, right = 0, 0
+        sum = 0
+        zero_count = 0
+
+        while left <= right and right < n:
+            if nums[right] == 0 and zero_count < k:
+                right += 1
+                zero_count += 1
+            elif nums[right] == 0 and zero_count == k and nums[left] == 0:
+                left += 1
+                zero_count -= 1
+            elif nums[right] == 0 and zero_count == k and nums[left] == 0:
+                left += 1       
+                zero_count += 1
+            else : 
+                right += 1
+                sum = max(sum, right-left+1)
+
+        return sum
 # @lc code=end
 
