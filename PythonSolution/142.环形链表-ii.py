@@ -72,6 +72,9 @@ class Solution:
         fast = head
         while fast != slow:
             fast, slow = fast.next, slow.next
+            # 不可以，因为第一个while的时候就有可能fast == slow, 导致没有任何return
+            # if fast == slow:
+            #     return fast
         return fast
 # @lc code=end
 
