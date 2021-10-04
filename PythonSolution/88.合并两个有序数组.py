@@ -33,6 +33,8 @@
 #
 
 # @lc code=start
+
+# 从后往前是指从一个数组m+n-1这个位置开始倒推，而不是m-1/n-1的位置，是最终的位置
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         if not nums1 or not nums2: return 
