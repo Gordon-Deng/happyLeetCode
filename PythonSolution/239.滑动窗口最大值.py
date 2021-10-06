@@ -117,5 +117,62 @@ class Solution:
                 if nums[i - k + 1] == dq[0]:
                     dq.popleft()
         return ans
+
+# 定义一个双向链表
+class LinkNode:
+    def __init__(self, val=0):
+        self.next = None
+        self.prev = None
+        self.val = val
+
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        if len(nums) == 1: return nums
+
+        head = LinkNode()
+        tail = LinkNode()
+        head.next = tail
+        tail.prev = head
+
+        # 尾部添加节点，类似于 “append”
+        def add_node_to_tail(node):
+            node.next = tail
+            node.prev = tail.prev
+            tail.prev.next = node
+            tail.prev = node
+
+        # 删除头节点，类似于Java中的 “poll”
+        def remove_node_from_head():
+            head.next.next.prev = head
+            head.next = head.next.next
+
+        # 删除尾部节点，类似于 “pop()”
+        def remove_node_from_tail():
+            tail.prev.prev.next = tail
+            tail.prev = tail.prev.prev
+
+        # 获得尾部节点，类似于 "list[-1]”
+        def get_last_node():
+            node = tail.prev
+            return node
+
+        # 获得头节点，类似于 “list[0]”
+        def get_first_node():
+            node = head.next
+            return node
+
+        # 定义完以上函数，下面的操作与什么双端队列呀，单调栈呀类似，这里不再啰嗦
+        # 但要记得链表的基本操作方法，这是基本功，这个如果不会的话，可以直接路过～
+        res, n = [], len(nums)
+        for i in range(0, n):
+            while tail.prev.prev and nums[i] > nums[get_last_node().val]:
+                remove_node_from_tail()
+            add_node_to_tail(LinkNode(i))
+            if get_first_node().val <= i-k:
+                remove_node_from_head()
+            if i + 1 >= k:
+                res.append(nums[get_first_node().val])
+        return res
 # @lc code=end
 
