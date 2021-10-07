@@ -125,7 +125,7 @@ class LinkNode:
         self.prev = None
         self.val = val
 
-
+# https://leetcode-cn.com/problems/sliding-window-maximum/solution/na-yao-wen-ti-lai-liao-ru-guo-mian-shi-g-8waf/
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         if len(nums) == 1: return nums
@@ -174,5 +174,87 @@ class Solution:
             if i + 1 >= k:
                 res.append(nums[get_first_node().val])
         return res
+
+from typing import List
+
+
+class LinkNode:
+    def __init__(self, val=0):
+        self.prev = None
+        self.next = None
+        self.val = val
+
+
+class Solution:
+    # def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    # 边界
+    # ans = []
+    # q = deque()
+    # if k > len(nums):
+    #     return nums
+
+    # for i in range(len(nums)):
+    #     while q and q[-1] < nums[i]:
+    #         q.pop()
+    #     q.append(nums[i])
+    #     if 0 <= i-k+1:
+    #         ans.append(q[0])
+    #         if nums[i-k+1] == q[0]:
+    #             q.popleft()
+    # return ans
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        ans = []
+        if k > len(nums):
+            return nums
+        self.head = LinkNode()
+        self.tail = LinkNode()
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+        for i in range(len(nums)):
+            # 判空注意是tail.prev.prev
+            while self.tail.prev.prev and self.get_queue_last_node().val < nums[i]:
+                self.remove_node_from_tail()
+            self.add_node_to_tail(LinkNode(nums[i]))
+            if 0 <= i - k + 1:
+                ans.append(self.get_queue_first_node().val)
+                if nums[i - k + 1] == self.get_queue_first_node().val:
+                    self.pop_the_leftest_node()
+        return ans
+
+    def add_node_to_tail(self, node: LinkNode):
+        # self.tail.next = node
+        # node.prev = self.tail
+        # node.next = self.head
+        # self.head.prev = node
+        # self.tail = node
+
+        node.next = self.tail
+        node.prev = self.tail.prev
+        self.tail.prev.next = node
+        self.tail.prev = node
+
+    def get_queue_first_node(self):
+        return self.head.next
+
+    def get_queue_last_node(self):
+        return self.tail.prev
+
+    def pop_the_leftest_node(self):
+        # temp2 = self.head.next
+        # self.head.next.prev = self.tail
+        # self.tail.next = self.head.next
+        # self.head = temp2
+
+        self.head.next.next.prev = self.head
+        self.head.next = self.head.next.next
+
+    def remove_node_from_tail(self):
+        # self.tail.prev.next = self.head
+        # self.head.prev = self.tail.prev
+        # self.tail = self.tail.prev
+
+        self.tail.prev.prev.next = self.tail
+        self.tail.prev = self.tail.prev.prev
 # @lc code=end
 
