@@ -74,17 +74,17 @@
 # @lc code=start
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        slow = fast = cir_start = 0
+        # 边界
+        slow, fast = 0, 0
         while True:
+            slow = nums[slow]
             fast = nums[nums[fast]]
-            slow = nums[slow]
-            if fast == slow:
+            if slow == fast:
                 break
+        slow = 0
+        while fast != slow:
+            slow, fast = nums[slow], nums[fast]
+        return slow
 
-        while True:
-            slow = nums[slow]
-            cir_start = nums[cir_start]
-            if cir_start == slow:
-                return slow
 # @lc code=end
 
