@@ -78,37 +78,33 @@
 #         self.next = next
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        hair = ListNode(0)
-        hair.next = head
-        pre = hair
+        virtual_head = ListNode()
+        virtual_head.next = head
+        prev = virtual_head
 
         while head:
-            tail = pre
-            # 查看剩余部分长度是否大于等于 k
+            tail = prev
             for i in range(k):
                 tail = tail.next
                 if not tail:
-                    return hair.next
-            nex = tail.next
+                    return virtual_head.next
+            next_node = tail.next
             head, tail = self.reverse(head, tail)
-            # 把子链表重新接回原链表
-            pre.next = head
-            tail.next = nex
-            pre = tail
-            head = tail.next
-        
-        return hair.next
-    # 翻转一个子链表，并且返回新的头与尾
-    def reverse(self, head: ListNode, tail: ListNode):
-        # 尾部要接起来
+            prev.next = head
+            tail.next = next_node
+            prev = tail
+            head = next_node
+        return virtual_head.next
+    
+    def reverse(self, head, tail):
         prev = tail.next
-        p = head
-        # 这里不能写成whiel prev:
-        while prev != tail:
-            nex = p.next
-            p.next = prev
-            prev = p
-            p = nex
-        return tail, head
-# @lc code=end
 
+        cur = head
+        while prev != tail:
+            temp = cur.next
+            cur.next = prev
+            prev = cur
+            cur = temp
+        return prev, head
+
+# @lc code=end
