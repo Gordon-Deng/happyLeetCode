@@ -34,12 +34,12 @@
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        pre, cur = None, head
+        prev, cur = None, head
         while cur:
             temp = cur.next
-            cur.next = pre
-            pre = cur 
+            cur.next = prev
+            prev = cur
             cur = temp
-        return pre
+        return prev
 # @lc code=end
 
