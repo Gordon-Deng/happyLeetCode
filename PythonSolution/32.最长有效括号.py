@@ -70,7 +70,6 @@ class Solution:
                     dp[i] = dp[i - 1] + 2 + dp[i - dp[i - 1] - 2]
                 if dp[i] > res:
                     res = dp[i]
-        return res
-        
+        return res  
 # @lc code=end
 
