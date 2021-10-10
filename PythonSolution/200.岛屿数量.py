@@ -79,5 +79,31 @@ class Solution:
                     res += 1
                     self.dfs(grid, i, j)
         return res
+
+# 带备忘录版本，面试官可能会不然你直接修改原数组
+class Solution:
+    visited_mapper = list()
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid: return o
+
+        count = 0
+        m, n = len(grid), len(grid[0])
+        global visited_mapper
+        visited_mapper = [["0"] * n for i in range(m)]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == "1" and visited_mapper[i][j] == "0":
+                    self.dfs(grid, i, j)
+                    count += 1
+        return count
+    def dfs(self, grid, i, j):
+        global visited_mapper
+        if i<0 or j<0 or i>= len(grid) or j >= len(grid[0]) or visited_mapper[i][j] == '1'or grid[i][j] == '0': return
+        visited_mapper[i][j] = "1" 
+        self.dfs(grid, i+1, j)
+        self.dfs(grid, i-1, j)
+        self.dfs(grid, i, j+1)
+        self.dfs(grid, i, j-1)
 # @lc code=end
 
