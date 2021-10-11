@@ -102,7 +102,7 @@ class Solution(object):
             cur_j = j + direct[1]
             
             if cur_i >= 0 and cur_i < len(board) and cur_j >= 0 and cur_j < len(board[0]) and board[cur_i][cur_j] == word[0]:
-                # 如果是已经使用过的元素，忽略
+                # 如果是已经使用过的元素，忽略，防止ABCCC的情况
                 if mark[cur_i][cur_j] == 1:
                     continue
                 # 将该元素标记为已使用
