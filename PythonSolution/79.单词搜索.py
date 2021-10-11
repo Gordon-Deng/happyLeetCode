@@ -78,7 +78,7 @@ class Solution(object):
         if m == 0:
             return False
         n = len(board[0])
-        mark = [[0 for _ in range(n)] for _ in range(m)]
+        mark = [[0] * n for _ in range(m)]
                 
         for i in range(len(board)):
             for j in range(len(board[0])):
