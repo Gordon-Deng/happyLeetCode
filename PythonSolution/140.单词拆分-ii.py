@@ -63,6 +63,7 @@
 # @lc code=start
 class Solution:
     # 超时
+    @lru_cache(maxsize = None)
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         res = []
         #
@@ -78,9 +79,6 @@ class Solution:
                     temp.append(s[pos:i])
                     dfs(wordDict,temp,i)
                     temp.pop() 
-            #
-                       
-            
         dfs(wordDict,[],0)
         return res
 # @lc code=end
