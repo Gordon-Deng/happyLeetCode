@@ -41,14 +41,17 @@ class Solution:
         return self.res
     
     def backtrack(self, sol, nums, check):
+        # 回溯三要素1：结果终止符
         if len(sol) == len(nums):
             self.res.append(sol)
             return
         
         for i in range(len(nums)):
+            # 回溯三要素2：剪枝
             if check[i] == 1:
                 continue
             check[i] = 1
+            # 回溯三要素3：回溯
             self.backtrack(sol+[nums[i]], nums, check)
             check[i] = 0     
 # @lc code=end
