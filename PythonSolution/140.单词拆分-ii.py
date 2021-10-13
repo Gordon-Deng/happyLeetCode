@@ -62,7 +62,26 @@
 
 # @lc code=start
 class Solution:
+    # 超时
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        
+        res = []
+        #
+        wordDict = set(wordDict)
+
+        def dfs(wordDict,temp,pos):
+            #
+            if pos == len(s):
+                res.append(" ".join(temp))
+                return
+            for i in range(pos,len(s)+1):
+                if s[pos:i] in wordDict:
+                    temp.append(s[pos:i])
+                    dfs(wordDict,temp,i)
+                    temp.pop() 
+            #
+                       
+            
+        dfs(wordDict,[],0)
+        return res
 # @lc code=end
 
