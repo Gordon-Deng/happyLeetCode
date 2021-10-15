@@ -75,7 +75,7 @@ class Solution:
             
             # 取出 size 个元素
             for _ in range(size):
-                # 取出节点
+                # 取出节点，deque不支持dpop（0）
                 node = queue.popleft()
                 # 偶数层，将节点值插入到 level_queue 尾部
                 if is_even_level:
