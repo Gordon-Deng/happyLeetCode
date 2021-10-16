@@ -70,7 +70,33 @@
 #
 
 # @lc code=start
+from typing import List
+
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        if not candidates:
+            return []
+        n = len(candidates)
+        res = []
+        def dfs(start, path, target):
+            if target == 0:
+                res.append(path)
+                return
+            for i in range(start, n):
+                target -= candidates[i]
+                if target < 0:
+                    break
+                dfs(i, path + [candidates[i]], target)
+
+        candidates.sort()
+        path = []
+        dfs(0, path, target)
+        return res
+
+if __name__ == '__main__':
+    a = [2,3,6,7]
+    b = 7
+    test = Solution()
+    print(test.combinationSum(a, b))
 # @lc code=end
 
