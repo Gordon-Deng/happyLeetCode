@@ -55,4 +55,3 @@ class Solution:
         bfs(0, path)
         return res
 # @lc code=end
-
