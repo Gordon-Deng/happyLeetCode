@@ -35,5 +35,23 @@
 # @lc code=start
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        if not nums:
+            return []
+        n = len(nums)
+        res = []
+
+        def bfs(start, path):
+            res.append(path[:])
+            for i in range(start, n):
+                # 这里不用i > start这么复杂，只要保证现在的数和前面不一样就行了
+                if nums[i-1] == nums[i]:
+                    continue
+                path.append(nums[i])
+                bfs(i+1, path)
+                path.pop()
+        nums.sort()
+        path = []
+        bfs(0, path)
+        return res
 # @lc code=end
 
