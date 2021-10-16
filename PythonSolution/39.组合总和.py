@@ -86,6 +86,8 @@ class Solution:
             for i in range(start, n):
                 # 这里不能target -= candidates[i]，会被修改target的值
                 residue = target - candidates[i]
+
+                # 减枝
                 if residue < 0:
                     break
                 dfs(i, path + [candidates[i]], residue)
