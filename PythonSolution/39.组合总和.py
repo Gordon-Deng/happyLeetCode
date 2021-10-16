@@ -73,46 +73,46 @@
 from typing import List
 
 # 太慢了
-# class Solution:
-#     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-#         if not candidates:
-#             return []
-#         n = len(candidates)
-#         res = []
-#         def dfs(start, path, target):
-#             if target == 0:
-#                 res.append(path)
-#                 return
-#             for i in range(start, n):
-#                 # 这里不能target -= candidates[i]，会被修改target的值
-#                 residue = target - candidates[i]
-#                 if target < 0:
-#                     break
-#                 dfs(i, path + [candidates[i]], residue)
-
-#         candidates.sort()
-#         path = []
-#         dfs(0, path, target)
-#         return res
-
-# https://leetcode-cn.com/problems/combination-sum/solution/dai-ma-sui-xiang-lu-dai-ni-xue-tou-hui-s-7tum/
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        if not candidates:
+            return []
+        n = len(candidates)
         res = []
+        def dfs(start, path, target):
+            if target == 0:
+                res.append(path)
+                return
+            for i in range(start, n):
+                # 这里不能target -= candidates[i]，会被修改target的值
+                residue = target - candidates[i]
+                if residue < 0:
+                    break
+                dfs(i, path + [candidates[i]], residue)
+
+        candidates.sort()
         path = []
-        def backtrack(candidates,target,sum,startIndex):
-            if sum > target: return 
-            if sum == target: return res.append(path[:])
-            for i in range(startIndex,len(candidates)):
-                if sum + candidates[i] >target: return  #如果 sum + candidates[i] > target 就终止遍历
-                sum += candidates[i] 
-                path.append(candidates[i])
-                backtrack(candidates,target,sum,i)  #startIndex = i:表示可以重复读取当前的数
-                sum -= candidates[i]  #回溯
-                path.pop()  #回溯
-        candidates = sorted(candidates)  #需要排序
-        backtrack(candidates,target,0,0)
+        dfs(0, path, target)
         return res
+
+# https://leetcode-cn.com/problems/combination-sum/solution/dai-ma-sui-xiang-lu-dai-ni-xue-tou-hui-s-7tum/
+# class Solution:
+#     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+#         res = []
+#         path = []
+#         def backtrack(candidates,target,sum,startIndex):
+#             if sum > target: return 
+#             if sum == target: return res.append(path[:])
+#             for i in range(startIndex,len(candidates)):
+#                 if sum + candidates[i] >target: return  #如果 sum + candidates[i] > target 就终止遍历
+#                 sum += candidates[i] 
+#                 path.append(candidates[i])
+#                 backtrack(candidates,target,sum,i)  #startIndex = i:表示可以重复读取当前的数
+#                 sum -= candidates[i]  #回溯
+#                 path.pop()  #回溯
+#         candidates = sorted(candidates)  #需要排序
+#         backtrack(candidates,target,0,0)
+#         return res
 
 if __name__ == '__main__':
     a = [2,3,6,7]
