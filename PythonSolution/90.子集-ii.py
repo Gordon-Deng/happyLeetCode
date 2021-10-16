@@ -49,6 +49,7 @@ class Solution:
                 bfs(i+1, path)
                 path.pop()
         # 之所以要排序是因为要过滤的话，必须是相同性质的才能过滤，122可以过滤掉一个[1,2]的结果
+        # 如果不排序就是212的输入，我们的 i > start and nums[i-1] == nums[i]:会无效
         nums.sort()
         path = []
         bfs(0, path)
