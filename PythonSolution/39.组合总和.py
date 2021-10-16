@@ -95,6 +95,7 @@ from typing import List
 #         dfs(0, path, target)
 #         return res
 
+# https://leetcode-cn.com/problems/combination-sum/solution/dai-ma-sui-xiang-lu-dai-ni-xue-tou-hui-s-7tum/
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
