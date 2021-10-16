@@ -43,12 +43,12 @@ class Solution:
         def bfs(start, path):
             res.append(path[:])
             for i in range(start, n):
-                # 这里不用i > start这么复杂，只要保证现在的数和前面不一样就行了
-                if nums[i-1] == nums[i]:
+                if i > start and nums[i-1] == nums[i]:
                     continue
                 path.append(nums[i])
                 bfs(i+1, path)
                 path.pop()
+        # 之所以要排序是因为要过滤的话，必须是相同性质的才能过滤，122可以过滤掉一个[1,2]的结果
         nums.sort()
         path = []
         bfs(0, path)
