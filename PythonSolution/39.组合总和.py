@@ -83,10 +83,11 @@ class Solution:
                 res.append(path)
                 return
             for i in range(start, n):
-                target -= candidates[i]
+                # 这里不能target -= candidates[i]，会被修改target的值
+                residue = target - candidates[i]
                 if target < 0:
                     break
-                dfs(i, path + [candidates[i]], target)
+                dfs(i, path + [candidates[i]], residue)
 
         candidates.sort()
         path = []
