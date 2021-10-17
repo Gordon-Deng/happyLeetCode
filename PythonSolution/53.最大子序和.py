@@ -37,6 +37,7 @@ class Solution:
         pre = 0
         res = nums[0]
         for i in range(size):
+            # 这里不用PRE的话，会出现o(n)的时间复杂度
             pre = max(nums[i], pre + nums[i])
             res = max(res, pre)
         return res
