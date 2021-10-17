@@ -60,18 +60,13 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        self.flag = True
-        def findTop(target, root) :
-            if not root:
-                return -float("inf")
-            left = findTop(target, root.left)
-            right = findTop(target, root.right)
-            if left > root.val or right < root.val:
-                self.flag = False
-            return max(target, max(left, right))
-        
-        left = findTop(root.val, root.left)
-        right = findTop(root.val, root.right)
-        return left <= root.val and right >= root.val and self.flag
+        def isBST(root, min_val, max_val):
+            if root == None:
+                return True
+            # print(root.val)
+            if root.val >= max_val or root.val <= min_val:
+                return False
+            return isBST(root.left, min_val, root.val) and isBST(root.right, root.val, max_val)
+        return isBST(root, float("-inf"), float("inf"))
 # @lc code=end
 
