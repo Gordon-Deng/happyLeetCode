@@ -31,6 +31,16 @@
 # @lc code=start
 from typing import List
 
+# 不好
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         size = len(nums)
+#         dp = [0] * len(nums)
+#         for i in range(size):
+#             # 这里不用PRE的话，会出现o(n)的时间复杂度
+#             dp[i] = max(nums[i], dp[i-1] + nums[i])
+#         return max(dp)
+
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         size = len(nums)
