@@ -137,28 +137,39 @@
 #            return nums[len(nums)-k] 
 #
 #        return topk_large(nums, k)
+# class Solution:
+#     def findKthLargest(self, nums: List[int], k: int) -> int:
+#         def findTopKth(low, high):
+#             pivot = random.randint(low, high)
+#             nums[low], nums[pivot] = nums[pivot], nums[low]
+#             base = nums[low]
+#             i = low
+#             j = low + 1
+#             while j <= high:
+#                 if nums[j] > base:
+#                     nums[i + 1], nums[j] = nums[j], nums[i + 1]
+#                     i += 1
+#                 j += 1
+#             nums[low], nums[i] = nums[i], nums[low]
+#             if i == k - 1:
+#                 return nums[i]
+#             elif i > k - 1:
+#                 return findTopKth(low, i - 1)
+#             else:
+#                 return findTopKth(i + 1, high)
+#         return findTopKth(0, len(nums) - 1)
+import heapq
 class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
-        def findTopKth(low, high):
-            pivot = random.randint(low, high)
-            nums[low], nums[pivot] = nums[pivot], nums[low]
-            base = nums[low]
-            i = low
-            j = low + 1
-            while j <= high:
-                if nums[j] > base:
-                    nums[i + 1], nums[j] = nums[j], nums[i + 1]
-                    i += 1
-                j += 1
-            nums[low], nums[i] = nums[i], nums[low]
-            if i == k - 1:
-                return nums[i]
-            elif i > k - 1:
-                return findTopKth(low, i - 1)
-            else:
-                return findTopKth(i + 1, high)
-        return findTopKth(0, len(nums) - 1)
-
+    def findKthLargest(self, nums, k):
+        if k == 0:
+            return None
+        heap = [x for x in nums[:k]]
+        heapq.heapify(heap)
+        for i in range(k, len(nums)):
+            if nums[i] > heap[0]:
+                heapq.heappop(heap)
+                heapq.heappush(heap, nums[i])
+        return heap[0]
 # https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/ji-yu-kuai-pai-de-suo-you-topkwen-ti-jia-ylsd/
 # @lc code=end
 
