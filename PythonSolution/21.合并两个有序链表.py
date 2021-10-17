@@ -30,6 +30,7 @@
 #         self.val = x
 #         self.next = None
 
+# 需要问一下是否能直接修改
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         pre_node = ListNode(-1)
