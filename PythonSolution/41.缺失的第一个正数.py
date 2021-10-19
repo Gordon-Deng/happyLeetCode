@@ -70,7 +70,6 @@ class Solution:
                 return i + 1
         
         return n + 1
-
 # class Solution:
 #     def firstMissingPositive(self, nums: List[int]) -> int:
 #         n = len(nums)
