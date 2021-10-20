@@ -68,7 +68,7 @@ class Solution:
         for i in range(n):
             if nums[i] > 0:
                 return i + 1
-        
+    
         return n + 1
 # class Solution:
 #     def firstMissingPositive(self, nums: List[int]) -> int:
