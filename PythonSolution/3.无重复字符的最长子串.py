@@ -58,7 +58,5 @@ class Solution:
             if cur_len > max_len:  max_len = cur_len
             flag.add(s[i])
         return max_len
-        
-
 # @lc code=end
 
