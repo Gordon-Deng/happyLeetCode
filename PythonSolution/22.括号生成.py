@@ -37,6 +37,7 @@ class Solution:
         ans = []
         def backtrack(temp, left_bracket, right_bracket):
             if len(temp) == 2*n:
+                # list转string
                 ans.append("".join(temp))
                 return
             if left_bracket < n:
