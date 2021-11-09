@@ -38,17 +38,18 @@ class Solution:
         def backtrack(temp, left_bracket, right_bracket):
             if len(temp) == 2*n:
                 # list转string
-                ans.append("".join(temp))
+                # ans.append("".join(temp))
+                ans.append(temp)
                 return
             if left_bracket < n:
-                temp.append("(")
+                temp = temp + "("
                 backtrack(temp, left_bracket+1, right_bracket)
-                temp.pop()
+                temp = temp[:-1]
             if right_bracket < left_bracket:
-                temp.append(")")
+                temp = temp + ")"
                 backtrack(temp, left_bracket, right_bracket+1)
-                temp.pop()
-        backtrack([], 0, 0)
+                temp = temp[:-1]
+        backtrack("", 0, 0)
         return ans
 # @lc code=end
 
