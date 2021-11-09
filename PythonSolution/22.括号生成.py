@@ -37,7 +37,7 @@ class Solution:
         ans = []
         def backtrack(temp, left_bracket, right_bracket):
             if len(temp) == 2*n:
-                ans.append(temp)
+                ans.append("".join(temp))
                 return
             if left_bracket < n:
                 temp.append("(")
@@ -47,7 +47,7 @@ class Solution:
                 temp.append(")")
                 backtrack(temp, left_bracket, right_bracket+1)
                 temp.pop()
-        backtrack(ans, 0, 0)
+        backtrack([], 0, 0)
         return ans
 # @lc code=end
 
