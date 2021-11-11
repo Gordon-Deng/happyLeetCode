@@ -95,11 +95,11 @@ class Solution:
 
                 # setdefault新方法
                 # depth_flag.setdefault(depth, node.val)
-                rightmost_value_at_depth[depth] = node.val
-                # rightmost_value_at_depth.setdefault(depth, node.val)
+                # rightmost_value_at_depth[depth] = node.val
+                rightmost_value_at_depth.setdefault(depth, node.val)
 
-                queue.append((node.left, depth + 1))
                 queue.append((node.right, depth + 1))
+                queue.append((node.left, depth + 1))
 
         return [rightmost_value_at_depth[depth] for depth in range(max_depth + 1)]
 # @lc code=end
