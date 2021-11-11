@@ -96,6 +96,7 @@ class Solution:
                 # setdefault新方法
                 # depth_flag.setdefault(depth, node.val)
                 # rightmost_value_at_depth[depth] = node.val
+                # setdefault相当于get, 不改变原有值，除非没有key
                 rightmost_value_at_depth.setdefault(depth, node.val)
 
                 queue.append((node.right, depth + 1))
