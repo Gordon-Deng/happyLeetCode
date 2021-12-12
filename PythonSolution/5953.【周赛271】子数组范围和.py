@@ -99,6 +99,15 @@ class Solution:
 # 滑动窗口
 class Solution:
     def subArrayRanges(self, nums: List[int]) -> int:
+        n = len(nums)
+        result = 0
+        for i in range(n):
+            max_num, min_num = nums[i], nums[i]
+            for j in range(i+1, n):
+                max_num = max(max_num, nums[j])
+                min_num = min(min_num, nums[j])
+                result += (max_num-min_num)
+        return result
 
 # DP
 class Solution:
