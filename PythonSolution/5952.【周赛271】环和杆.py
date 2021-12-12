@@ -1,7 +1,7 @@
 #
 # @lc app=leetcode.cn id=41 lang=python3
 #
-# [41] 缺失的第一个正数
+# [5952] 缺失的第一个正数
 #
 # https://leetcode-cn.com/problems/rings-and-rods/
 #
@@ -12,7 +12,6 @@
 # 例如，"R3G2B1" 表示：共有 n == 3 个环，红色的环在编号为 3 的杆上，绿色的环在编号为 2 的杆上，蓝色的环在编号为 1 的杆上。
 # 找出所有集齐 全部三种颜色 环的杆，并返回这种杆的数量。
 # @lc code=start
-# 原地哈希
 class Solution:
     def countPoints(self, rings: str) -> int:
         sz = len(rings)
