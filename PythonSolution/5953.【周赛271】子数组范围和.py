@@ -87,7 +87,18 @@ class Solution:
         return result
 
 # DP
+# 倒序记得是range(n-1, -1, -1),第二个-1很关键
 class Solution:
     def subArrayRanges(self, nums: List[int]) -> int:
+        n = len(nums)
+        result = 0
+        dp = [[0] * n for i in range(n) ]
+        for i in range(n):
+            dp[i][i] = 0
+        for i in range(n-2, -1, -1):
+            for j in range(i+1, n):
+                dp[i][j] = max(abs(nums[j]- nums[i]), max(dp[i][j-1], dp[i+1][j]))
+                result += dp[i][j]
+        return result
 
 
