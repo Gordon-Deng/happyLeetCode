@@ -58,6 +58,43 @@ class Solution:
 # 单调栈
 class Solution:
     def subArrayRanges(self, nums: List[int]) -> int:
+        # 单调栈
+        n = len(nums)
+        #
+        minleft, stack = [], []
+        for i, num in enumerate(nums):
+            while stack and num < nums[stack[-1]]:
+                stack.pop()
+            minleft.append(-1 if not stack else stack[-1])
+            stack.append(i)
+        minright, stack = [], []
+        for i in range(n-1, -1, -1):
+            num = nums[i]
+            while stack and num <= nums[stack[-1]]:
+                stack.pop()
+            minright.append(n if not stack else stack[-1])
+            stack.append(i)
+        minright = minright[::-1]
+        #
+        maxleft, stack = [], []
+        for i, num in enumerate(nums):
+            while stack and num > nums[stack[-1]]:
+                stack.pop()
+            maxleft.append(-1 if not stack else stack[-1])
+            stack.append(i)
+        maxright, stack = [], []
+        for i in range(n-1, -1, -1):
+            num = nums[i]
+            while stack and num >= nums[stack[-1]]:
+                stack.pop()
+            maxright.append(n if not stack else stack[-1])
+            stack.append(i)
+        maxright = maxright[::-1]
+        #
+        ans = 0
+        for i in range(n):
+            ans += nums[i] * ( (i-maxleft[i])*(maxright[i]-i) - (i-minleft[i])*(minright[i]-i) )
+        return ans
 
 # 滑动窗口
 class Solution:
