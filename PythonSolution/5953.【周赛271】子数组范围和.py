@@ -41,10 +41,29 @@
 # 解释：nums 中所有子数组范围的和是 59
 
 # 暴力
+# 其实可以排一下序，但没必要了
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
+        n = len(nums)
+        res = 0
+        for i in range(n):
+            min_ = nums[i]
+            max_ = nums[i]
+            for j in range(i + 1, n):
+                min_ = min(min_, nums[j])
+                max_ = max(max_, nums[j])
+                res += (max_ - min_)
+        return res
 
 # 单调栈
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
 
 # 滑动窗口
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
 
 # DP
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
 
