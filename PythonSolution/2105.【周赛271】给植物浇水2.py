@@ -68,6 +68,7 @@
 # 由于她到达时只剩下 1 单元水，所以需要重新灌满水罐。
 # 这是唯一一次需要重新灌满水罐的情况。所以，两人浇灌所有植物过程中重新灌满水罐的次数 = 1 。
 
+# 模拟
 class Solution:
     def minimumRefill(self, plants: List[int], capacityA: int, capacityB: int) -> int:
         res = 0   # 灌满水罐次数
