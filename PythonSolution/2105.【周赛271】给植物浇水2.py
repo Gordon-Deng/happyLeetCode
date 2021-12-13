@@ -1,9 +1,9 @@
 #
 # @lc app=leetcode.cn id=41 lang=python3
 #
-# [5952] 缺失的第一个正数
+# [2105] 给植物浇水II
 #
-# https://leetcode-cn.com/problems/rings-and-rods/
+# https://leetcode-cn.com/problems/watering-plants-ii/
 #
 # Alice 和 Bob 打算给花园里的 n 株植物浇水。植物排成一行，从左到右进行标记，编号从 0 到 n - 1 。其中，第 i 株植物的位置是 x = i 。
 
