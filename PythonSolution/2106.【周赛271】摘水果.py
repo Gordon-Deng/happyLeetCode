@@ -45,3 +45,22 @@
 # 最多可以移动 k = 2 步，无法到达任一有水果的地方
 
 # 前缀和+二分
+class Solution:
+    def maxTotalFruits(self, fruits: List[List[int]], startPos: int, k: int) -> int:
+        n = len(fruits)
+        pre_sum = [0] * (n + 1)
+        pos = [i[0] for i in fruits]
+        res = 0
+        for i in range(1, n + 1):
+            pre_sum[i] += fruits[i - 1][1] + pre_sum[i - 1]
+
+        for x in range(k, -1, -1):
+            y = (k - x) // 2
+            l, r = startPos - x, startPos + y
+            pl, pr = bisect.bisect_left(pos, l), bisect.bisect_right(pos, r)
+            res = max(res, pre_sum[pr] - pre_sum[pl])
+            
+            l, r = startPos - y, startPos + x
+            pl, pr = bisect.bisect_left(pos, l), bisect.bisect_right(pos, r)
+            res = max(res, pre_sum[pr] - pre_sum[pl])
+        return res
