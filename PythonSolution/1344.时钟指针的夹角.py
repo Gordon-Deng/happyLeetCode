@@ -68,6 +68,5 @@
 # @lc code=start
 class Solution:
     def angleClock(self, hour: int, minutes: int) -> float:
-        
 # @lc code=end
 
