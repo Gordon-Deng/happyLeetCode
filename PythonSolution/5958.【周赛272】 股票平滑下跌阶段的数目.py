@@ -1,9 +1,17 @@
 # https://leetcode-cn.com/problems/number-of-smooth-descent-periods-of-a-stock/
 
 class Solution:
-	def find_desc_smoothly(nums: List[str]) -> bool:
+    def find_desc_smoothly(self, nums: List[int]) -> bool:
+        if not nums:
+            return False
+        if len(nums) == 1:	
+            return True
+        for i in range(len(nums)-1):
+            if nums[i] - nums[i+1] !=1:
+                return False
+        return True
 
-    def subsets_binary(nums: List[int]) -> List[List[int]]:
+    def subsets_binary(self, nums: List[int]) -> List[List[int]]:
         n = len(nums)
         res = []
         for state in range(0, 1 << n):
@@ -51,3 +59,12 @@ class Solution:
         return res
 
     def getDescentPeriods(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        l = self.subsets_recall(prices)
+        res = 0
+        for i in l:
+            if self.find_desc_smoothly(i):
+                print(i)
+                res += 1
+        return res
