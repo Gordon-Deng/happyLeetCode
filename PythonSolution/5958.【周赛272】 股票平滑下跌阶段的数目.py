@@ -69,6 +69,7 @@ class Solution:
                 res += 1
         return res
 
+# 滑动窗口
     class Solution:
     def getDescentPeriods(self, prices: List[int]) -> int:
         n = len(prices)
