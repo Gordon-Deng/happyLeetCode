@@ -68,3 +68,17 @@ class Solution:
                 print(i)
                 res += 1
         return res
+
+    class Solution:
+    def getDescentPeriods(self, prices: List[int]) -> int:
+        n = len(prices)
+        res = 1   # 平滑下降阶段的总数，初值为 dp[0]
+        prev = 1   # 上一个元素为结尾的平滑下降阶段的总数，初值为 dp[0]
+        # 从 1 开始遍历数组，按照递推式更新 prev 以及总数 res
+        for i in range(1, n):
+            if prices[i] == prices[i-1] - 1:
+                prev += 1
+            else:
+                prev = 1
+            res += prev
+        return res
