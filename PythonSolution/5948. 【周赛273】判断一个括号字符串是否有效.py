@@ -1,4 +1,4 @@
-# https://leetcode-cn.com/problems/find-all-possible-recipes-from-given-supplies/
+# https://leetcode-cn.com/problems/check-if-a-parentheses-string-can-be-valid/
 
 # 拓扑排序
 from collections import defaultdict, deque
