@@ -1,32 +1,32 @@
 # https://leetcode-cn.com/problems/check-if-a-parentheses-string-can-be-valid/
 
-# 拓扑排序
-from collections import defaultdict, deque
+# 模拟
 class Solution:
-    def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]: 
-        n = len(recipes)
-        res = []
-        
-        #------------------- topsort
-        adjvex = defaultdict(list)
-        indegree = defaultdict(int)
-        
-        for i in range(n):
-            cai = recipes[i]
-            yaoqiu = ingredients[i]
-            for yq in yaoqiu:
-                adjvex[yq].append(cai)
-                indegree[cai] += 1
-        
-        q = collections.deque()
-        for cailiao in supplies:
-            q.append(cailiao)
-        while q:
-            x = q.popleft()
-            for y in adjvex[x]:
-                indegree[y] -= 1
-                if indegree[y] == 0:
-                    q.append(y)
-                    res.append(y)
-        return res
-        
+    def canBeValid(self, s: str, locked: str) -> bool:
+        n = len(s)
+        if n %2 != 0:
+            return False
+        stack_left = []
+        stack_any = []
+        for i in range(len(s)):
+            if locked[i] == '0':
+                stack_any.append(i)
+            else: #locked
+                if s[i] == ')': 
+                    if stack_left and stack_left[-1] < i:
+                        stack_left.pop()
+                    elif stack_any and stack_any[-1] < i:
+                        stack_any.pop()
+                    else:
+                        return False
+                else:
+                    stack_left.append(i)
+        print(stack_left)
+        while stack_left:
+            if stack_any and stack_any[-1] > stack_left[-1]:
+                stack_any.pop()
+                stack_left.pop()
+            else:
+                return False
+
+        return len(stack_left) == 0
