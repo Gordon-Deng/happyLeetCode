@@ -1,4 +1,4 @@
-# https://leetcode-cn.com/problems/check-if-a-parentheses-string-can-be-valid/
+https://leetcode-cn.com/problems/abbreviating-the-product-of-a-range/
 
 # 模拟
 class Solution:
