@@ -38,3 +38,4 @@ class Solution:
         if ok10 == True:
             return str(pref) + '...' + str(suf)[-5: ].rjust(5, '0') + 'e' + str(cnt0)
         return str(old_pre) + 'e' + str(cnt0)
+        
