@@ -22,3 +22,4 @@ class Solution:
                     break
             ans.append(cnt)
         return ans
+       
