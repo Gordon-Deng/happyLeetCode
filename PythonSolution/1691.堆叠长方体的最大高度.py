@@ -73,5 +73,14 @@
 # @lc code=start
 class Solution:
     def maxHeight(self, cuboids: List[List[int]]) -> int:
+        n = len(cuboids)
+        dp = [0] * n
+        cuboids.sort(key=lambda x:(x[0],-x[1]))
+        for i in range(n):
+            dp[i] = cuboids[i][2]
+            for j in range(i):
+                if all(cuboids[j][k] < cuboids[i][k] for k in range(1,3)):
+                    dp[i] = max(dp[i], dp[j] + cuboids[i][2])
+        return max(dp)
 # @lc code=end
 
