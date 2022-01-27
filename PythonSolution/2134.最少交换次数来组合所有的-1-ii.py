@@ -65,5 +65,21 @@
 # @lc code=start
 class Solution:
     def minSwaps(self, nums: List[int]) -> int:
+        n = len(nums)
+        windowLen = sum(nums)
+        cnt = sum(nums[:windowLen])
+        ans = cnt
+        for i in range(windowLen, n):
+            cnt += nums[i]
+            cnt -= nums[i-windowLen]
+            ans = max(ans,cnt)
+            # print(ans)
+        for i in range(windowLen):
+            cnt -= nums[-windowLen+i]
+            cnt += nums[i]
+            # print(nums[-windowLen+i], nums[i])
+            ans = max(ans,cnt)
+            # print(ans)
+        return windowLen-ans
 # @lc code=end
 
