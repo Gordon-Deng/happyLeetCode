@@ -25,6 +25,29 @@ class Solution:
         return res
 ```
 
+2139.Minimum Moves to Reach Target Score
 
+Input: target = 5, maxDoubles = 0
+Output: 4
 
+Input: target = 19, maxDoubles = 2
+Output: 7
+
+Input: target = 10, maxDoubles = 4
+Output: 4
+
+```
+class Solution:
+    def minMoves(self, target: int, maxDoubles: int) -> int:
+        ans = 0
+        while maxDoubles and target != 1:
+            ans += 1
+            if target % 2 == 1:
+                target -= 1
+            else:
+                maxDoubles -= 1
+                target //= 2
+        ans += (target - 1)
+        return ans
+```
 # Biweekly Contest
