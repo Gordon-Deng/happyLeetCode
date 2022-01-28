@@ -50,4 +50,17 @@ class Solution:
         ans += (target - 1)
         return ans
 ```
+
+2140.Solving Questions With BrainpowerMy SubmissionsBack to Contest
+
+Input: questions = [[3,2],[4,3],[4,4],[2,5]]
+Output: 5
+
+Input: questions = [[1,1],[2,2],[3,3],[4,4],[5,5]]
+Output: 7
+
+```
+
+```
+
 # Biweekly Contest
