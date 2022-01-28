@@ -60,7 +60,34 @@ Input: questions = [[1,1],[2,2],[3,3],[4,4],[5,5]]
 Output: 7
 
 ```
+    def mostPoints(self, questions: List[List[int]]) -> int:
+        n = len(questions)
+        dp = [0] * (n + 1)   # 解决每道题及以后题目的最高分数
+        for i in range(n - 1, -1, -1):
+            dp[i] = max(dp[i + 1], questions[i][0] + dp[min(n, i + questions[i][1] + 1)])
+        return dp[0]
+```
 
+2141.Maximum Running Time of N Computers
+
+Input: n = 2, batteries = [3,3,3]
+Output: 4
+
+Input: n = 2, batteries = [1,1,1,1]
+Output: 2
+
+
+```
+class Solution:
+    def maxRunTime(self, n: int, batteries: List[int]) -> int:
+        l, r = 0, sum(batteries) // n
+        while l < r:
+            x = (l + r + 1) // 2
+            if n * x <= sum(min(b, x) for b in batteries):
+                l = x
+            else:
+                r = x - 1
+        return l
 ```
 
 # Biweekly Contest
