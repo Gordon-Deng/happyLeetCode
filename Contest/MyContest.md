@@ -195,6 +195,15 @@ atm.withdraw(600);        // 返回 [-1] 。机器会尝试取出 $500 的钞票
                           // 由于请求被拒绝，机器中钞票的数量不会发生改变。
 atm.withdraw(550);        // 返回 [0,1,0,0,1] ，机器会返回 1 张 $50 的钞票和 1 张 $500 的钞票。
 
+class Solution:
+    def waysToBuyPensPencils(self, total: int, cost1: int, cost2: int) -> int:
+        pen_num = total // cost1
+        res = 0
+        for i in range(pen_num + 1):
+            pencil_num = (total - i * cost1) // cost2
+            res += pencil_num + 1
+            # print(i, res)
 
+        return res if res != 0 else 1
 
 ```
